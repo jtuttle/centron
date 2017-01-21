@@ -9,13 +9,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainUI : MonoBehaviour 
-{
+public class MainUI : MonoBehaviour {
   [SerializeField]
-  // Use this for initialization
-  void Start() 
-  {
-   
+  Image healthBar;
+  [SerializeField]
+  Image cooldownBar;
+
+  // Amount should be between 0..1.0f
+  public void UpdateHealth(float amount) {
+    healthBar.fillAmount = amount;
+  }
+
+  // Amount should be between 0..1.0f
+  public void UpdateCooldown(float amount) {
+    healthBar.fillAmount = amount;
   }
 
 }
