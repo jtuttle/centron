@@ -15,7 +15,7 @@ public class TuningTest : MonoBehaviour
 	{
 		Tuning tuning = Tuning.Get;
 		Debug.Log(tuning.MaxPlayerBaseHealth);
-		Debug.Log(tuning.HighPitchAttackDistance);
+		Debug.Log(tuning.HighPitchAttackRange);
 	}
 
 }

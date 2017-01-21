@@ -34,5 +34,10 @@ public class Tuning
 	public float PlayerAttackCooldown;
 	public float UnitSpawnFrequency;
 	public float EnemyMovementRate;
-	public float HighPitchAttackDistance;
+	public float HighPitchAttackRange;
+	public float HighPitchAttackDuration;
+	public float NumberofLanesaHighPitchAttackHits;
+	public float LowPitchAttackRange;
+	public float LowPitchAttackDuration;
+	public int NumberOfLanesALowPitchAttackHits;
 }
