@@ -216,8 +216,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2532852ceabcf4f8fa15e75dad450bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  cooldownBar: {fileID: 0}
+  healthBar: {fileID: 114409869890279056}
+  cooldownBar: {fileID: 114504082267889334}
 --- !u!114 &114160792868780982
 MonoBehaviour:
   m_ObjectHideFlags: 1
