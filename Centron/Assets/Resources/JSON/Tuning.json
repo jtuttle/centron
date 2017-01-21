@@ -1,0 +1,8 @@
+{
+     "MaxPlayerBaseHealth" : 50,
+     "PlayerWaveAttacksPerCooldown" : 1,
+     "PlayerAttackCooldown" : 2,
+     "UnitSpawnFrequency" : 0.2,
+     "EnemyMovementRate" : 1,
+     "HighPitchAttackDistance" : 8
+}
