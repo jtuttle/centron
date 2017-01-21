@@ -1,0 +1,13 @@
+{
+     "MaxPlayerBaseHealth" : 50,
+     "PlayerWaveAttacksPerCooldown" : 1,
+     "PlayerAttackCooldown" : 2,
+     "UnitSpawnFrequency" : 0.2,
+     "EnemyMovementRate" : 1,
+     "HighPitchAttackRange" : 8,
+     "HighPitchAttackDuration" : 0.5,
+     "NumberofLanesaHighPitchAttackHits" : 1,
+     "LowPitchAttackRange" : 2,
+     "LowPitchAttackDuration" : 1,
+     "NumberOfLanesALowPitchAttackHits" : 5
+}
