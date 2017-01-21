@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InputController : MonoBehaviour {
+  public GameObject Base;
+
+  private Vector2 _basePos;
+
   void Start() {
-    
+    _basePos = Camera.main.WorldToScreenPoint(Base.transform.position);
   }
 	
   void Update() {
-    Vector3 mousePos = Input.mousePosition;
-//    Debug.Log(mousePos);
+    FollowMouse();
+  }
 
-    Vector2 basePos = Camera.main.WorldToScreenPoint(Base.transform.position);
-    Vector2 dir = Input.mousePosition - basePos;
+  private void FollowMouse() {
+    Vector2 dir = (Vector2)Input.mousePosition - _basePos;
     float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-    Vector3 rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-Debug.Log(rotation);    
+    Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     Base.transform.rotation = rotation;
-
-
   }
 }
