@@ -13,6 +13,14 @@ public class InputController : MonoBehaviour {
 	
   void Update() {
     FollowMouse();
+
+    if(Input.GetMouseButtonDown(0)) {
+      ShootWave();
+    }
+
+    if(Input.GetMouseButtonDown(1)) {
+      SwitchWave();
+    }
   }
 
   private void FollowMouse() {
@@ -20,5 +28,13 @@ public class InputController : MonoBehaviour {
     float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
     Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     Base.transform.rotation = rotation;
+  }
+
+  private void ShootWave() {
+    Debug.Log("PEW!");
+  }
+
+  private void SwitchWave() {
+    Debug.Log("SWITCH!");
   }
 }
