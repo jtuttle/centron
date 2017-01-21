@@ -4,5 +4,10 @@
      "PlayerAttackCooldown" : 2,
      "UnitSpawnFrequency" : 0.2,
      "EnemyMovementRate" : 1,
-     "HighPitchAttackDistance" : 8
+     "HighPitchAttackRange" : 8,
+     "HighPitchAttackDuration" : 0.5,
+     "NumberofLanesaHighPitchAttackHits" : 1,
+     "LowPitchAttackRange" : 2,
+     "LowPitchAttackDuration" : 1,
+     "NumberOfLanesALowPitchAttackHits" : 5
 }
