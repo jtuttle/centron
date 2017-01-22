@@ -16,6 +16,7 @@ public class PauseUI : UI
   public void Pause() {
     Time.timeScale = 0;
     pauseScreen.SetActive(true);
+    EventModule.Event(EventType.PAUSE_GAME);
   }
 
   public void ResumeGame() {
