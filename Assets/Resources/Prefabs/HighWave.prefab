@@ -20,6 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4690691386833660}
   - component: {fileID: 212051466858977716}
+  - component: {fileID: 61365130878418468}
+  - component: {fileID: 114660073879008584}
   m_Layer: 0
   m_Name: HighWave
   m_TagString: Untagged
@@ -40,6 +42,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &61365130878418468
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1589074909628942}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.91, y: 0.2}
+--- !u!114 &114660073879008584
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1589074909628942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6efd6347dc34249c3a93b7b53bb20257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WaveType: 1
+  ElapsedDuration: 0
 --- !u!212 &212051466858977716
 SpriteRenderer:
   m_ObjectHideFlags: 1
