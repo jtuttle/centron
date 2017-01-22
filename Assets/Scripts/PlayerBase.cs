@@ -22,6 +22,11 @@ public class PlayerBase : MonoBehaviour {
     UpdateCooldown();
   }
 
+  public float GetHealthPercentage() {
+    // TODO
+    return 0;
+  }
+
   public float GetCooldownPercentage() {
     float total = GetCooldownForWaveType(LastShootWaveType);
     return Cooldown / total;
