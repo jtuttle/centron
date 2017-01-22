@@ -217,6 +217,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 114219735499057338, guid: 0688d0a8c0f95e048b20b8fdb0613a1b,
+        type: 2}
+      propertyPath: m_PlanetSize
+      value: 1.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0688d0a8c0f95e048b20b8fdb0613a1b, type: 2}
   m_IsPrefabParent: 0
@@ -808,6 +813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 689ce6587f63442bf9e44f07f36e4774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  switchWaveKey: 32
 --- !u!1 &1725852435
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,8 +9,11 @@ public class WaveController : MonoBehaviour {
 
   void Awake() {
     _waves = new List<Wave>();
-
     EventModule.Subscribe(OnEvent);
+  }
+
+  void OnDestroy() {
+    EventModule.Unsubscribe(OnEvent);
   }
 
   void Update() {
@@ -51,8 +54,7 @@ public class WaveController : MonoBehaviour {
     GameObject prototype = Resources.Load<GameObject>("Prefabs/HighWave");
     Wave wave = GameObject.Instantiate(prototype).GetComponent<Wave>();
 
-    wave.transform.rotation =
-      PlayerBase.transform.rotation * Quaternion.Euler(0, 0, -90);
+    wave.transform.rotation = PlayerBase.transform.rotation * Quaternion.Euler(0, 0, -90);
 
     return wave;
   }
