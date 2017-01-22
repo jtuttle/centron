@@ -9,6 +9,11 @@ public enum WaveType {
 public class PlayerBase : MonoBehaviour {
   public int Health;
 
+  public float HighWaveEnergy = 0;
+  public float HighWaveEnergyMax = 100.0f;
+  public float HighWaveEnergyDecrement = 10f;
+  public float HighWaveEnergyGrowth = 10f;
+
   public float HighWaveCooldown = 0;
   public float LowWaveCooldown = 0;
 
@@ -19,10 +24,16 @@ public class PlayerBase : MonoBehaviour {
   public void Awake() {
     EventModule.Subscribe(OnEvent);
     Health = Tuning.Get.MaxPlayerBaseHealth;
+    HighWaveEnergy = HighWaveEnergyMax;
   }
 
   public void Update() {
     UpdateCooldown();
+
+    if(HighWaveCooldown == 0) {
+      HighWaveEnergy =
+        Mathf.Min(HighWaveEnergy + HighWaveEnergyGrowth, HighWaveEnergyMax);
+    }
   }
 
   public void OnDestroy() {
@@ -43,6 +54,10 @@ public class PlayerBase : MonoBehaviour {
       default:
         return default(float);
     }
+  }
+
+  public float GetHighWaveEnergyPercentage() {
+    return 1 - Mathf.Min(HighWaveEnergy / HighWaveEnergyMax, HighWaveEnergyMax);
   }
 
   public bool WaveShootIsAllowed(WaveType type) {
@@ -89,9 +104,17 @@ public class PlayerBase : MonoBehaviour {
 
   private void OnShootWave(WaveType waveType) {
     LastShootWaveType = CurrentWaveType;
-    switch (waveType) {
+
+    switch(waveType) {
       case WaveType.High:
-        HighWaveCooldown = GetCooldownForWaveType(CurrentWaveType);
+        HighWaveEnergy = Mathf.Max(0, HighWaveEnergy - HighWaveEnergyDecrement);
+
+        if(HighWaveEnergy == 0) {
+          HighWaveCooldown = GetCooldownForWaveType(CurrentWaveType);
+          HighWaveEnergy = HighWaveEnergyMax;
+          EventModule.Event(EventType.HIGH_WAVE_OVERHEATED);
+        }
+
         break;
       case WaveType.Low:
         LowWaveCooldown = GetCooldownForWaveType(CurrentWaveType);
