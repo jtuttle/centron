@@ -22,6 +22,7 @@ public class PlayerBase : MonoBehaviour {
   private float _highWaveEnergyGrowth;
 
   private SpriteRenderer _cannonSprite;
+  private SpriteRenderer _cannonGlowSprite;
   private SpriteRenderer _ringGlowSprite;
 
   public void Awake() {
@@ -35,6 +36,7 @@ public class PlayerBase : MonoBehaviour {
     _highWaveEnergy = _highWaveEnergyMax;
 
     _cannonSprite = transform.Find("Cannon").GetComponent<SpriteRenderer>();
+    _cannonGlowSprite = transform.Find("CannonGlow").GetComponent<SpriteRenderer>();
     _ringGlowSprite = transform.Find("RingGlow").GetComponent<SpriteRenderer>();
     _ringGlowSprite.enabled = false;
   }
