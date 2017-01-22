@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4060645095660942}
   - component: {fileID: 212855218101133782}
   - component: {fileID: 95342655649413254}
+  - component: {fileID: 114490421258039172}
   m_Layer: 0
   m_Name: vfx_deathA
   m_TagString: Untagged
@@ -48,7 +49,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1595318202074380}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 9dc890b6cc2754c58b41a9d4c8a95e40, type: 2}
   m_CullingMode: 0
@@ -58,6 +59,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114490421258039172
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1595318202074380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 364b5bc4f2ef3485db257c8b0911caeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212855218101133782
 SpriteRenderer:
   m_ObjectHideFlags: 1
