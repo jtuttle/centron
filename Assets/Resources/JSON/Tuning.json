@@ -4,7 +4,7 @@
     "UnitSpawnFrequencyMinimum" : 0.2,
     "UnitSpawnFrequencyMaximum" : 1.8,
     "MaxNumberOfTimesALaneCanSpawnUnitsInSuccession" : 3,
-    "EnemyMovementRate" : 1,
+    "EnemyMovementRate" : 1.6,
     "HighPitchAttackRange" : 8,
     "HighPitchAttackDuration" : 1,
     "HighPitchAttackCooldown" : 2,
