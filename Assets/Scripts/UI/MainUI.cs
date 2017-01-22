@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MainUI : UI {
+  public PlayerBase PlayerBase;
   [SerializeField]
   Image healthBar;
   [SerializeField]
@@ -24,8 +25,14 @@ public class MainUI : UI {
     highScoreTimer = new Timer(0, -1);
     highScoreTimer.SubscribeToTimeChange(handleTimerTimeChange);
     highScoreTimer.Begin();
-    UpdateWaveType();
-    EventModule.Subscribe(OnSwitchWaveType);
+  }
+
+  public void Update() {
+    if(PlayerBase != null) {
+      UpdateCooldown(PlayerBase.GetCooldownPercentage());
+      UpdateHealth(PlayerBase.GetHealthPercentage());
+      UpdateWaveType(PlayerBase.CurrentWaveType.ToString());
+    }
   }
 
   void handleTimerTimeChange(float timeRemaining) {
@@ -39,22 +46,14 @@ public class MainUI : UI {
 
   // Amount should be between 0..1.0f
   public void UpdateCooldown(float amount) {
-    healthBar.fillAmount = amount;
+    cooldownBar.fillAmount = amount;
   }
-      
+  
   public float GetGameTime() {
     return highScoreTimer.TimeRemaining;
   }
-      
-  public void OnSwitchWaveType(string eventType) {
-    if(eventType == EventType.SWITCH_WAVE_TYPE) {
-      UpdateWaveType();
-    }
-  }
 
-  private void UpdateWaveType() {
-    PlayerBase playerBase =
-      GameObject.Find("PlayerBase").GetComponent<PlayerBase>();
-    waveTypeText.text = playerBase.CurrentWaveType.ToString();
+  private void UpdateWaveType(string waveType) {
+    waveTypeText.text = waveType;
   }
 }
