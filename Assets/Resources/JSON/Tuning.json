@@ -12,5 +12,5 @@
     "LowPitchAttackRange" : 2,
     "LowPitchAttackDuration" : 1,
     "LowPitchAttackCooldown" : 5,
-    "AngleofLowPitchAttack" : 360,
+    "AngleofLowPitchAttack" : 360
 }
