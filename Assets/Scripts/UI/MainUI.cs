@@ -49,7 +49,7 @@ public class MainUI : UI {
     // DEGBUGING ONLY:
     #if UNITY_EDITOR
     if (Input.GetKeyDown(KeyCode.Q)) {
-      LoadGameOver();
+      EventModule.Event(EventType.GAME_OVER);
     }
     #endif
   }
