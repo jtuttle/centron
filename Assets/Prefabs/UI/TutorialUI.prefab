@@ -122,7 +122,7 @@ MonoBehaviour:
   tutorialSteps:
   - stepTitle: Help
     stepText: We need your help.  Our world is under assault from Aliens.
-    displayIcon: {fileID: 21300000, guid: a8bfd8ec40b8e47039d856a5362562d6, type: 3}
+    displayIcon: {fileID: 21300000, guid: 8e3cab6bce0a14598b6b53bdd603a087, type: 3}
     eventsToAdvance:
     - Click
   - stepTitle: Controls
