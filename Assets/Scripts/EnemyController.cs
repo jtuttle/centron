@@ -48,6 +48,7 @@ public class EnemyController : MonoBehaviour {
 
   void spawnEnemy(Vector3 m_spawnPos) {
     m_Enemies.Add(getEnemyInstance(m_spawnPos));
+    EventModule.Event(EventType.SPAWN_ENEMY);
   }
 
   GameObject getEnemyInstance(Vector3 m_spawnPos) {
