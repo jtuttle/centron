@@ -976,10 +976,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
-  HighWaveEnergy: 0
-  HighWaveEnergyMax: 1000
-  HighWaveEnergyDecrement: 10
-  HighWaveEnergyGrowth: 0.1
   HighWaveCooldown: 0
   LowWaveCooldown: 0
   LastShootWaveType: 1
