@@ -245,7 +245,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: v0.1.0
+  m_Text: v0.1.1
 --- !u!222 &395059614
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -434,7 +434,7 @@ Prefab:
     - target: {fileID: 224500874971562454, guid: a7f4210ab82054b2296c957a5a3a6687,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -103.125
       objectReference: {fileID: 0}
     - target: {fileID: 224010544553232102, guid: a7f4210ab82054b2296c957a5a3a6687,
         type: 2}
@@ -454,7 +454,7 @@ Prefab:
     - target: {fileID: 224010544553232102, guid: a7f4210ab82054b2296c957a5a3a6687,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -271.875
       objectReference: {fileID: 0}
     - target: {fileID: 224798269569045826, guid: a7f4210ab82054b2296c957a5a3a6687,
         type: 2}
@@ -474,7 +474,7 @@ Prefab:
     - target: {fileID: 224798269569045826, guid: a7f4210ab82054b2296c957a5a3a6687,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -403.125
       objectReference: {fileID: 0}
     - target: {fileID: 224848124595649226, guid: a7f4210ab82054b2296c957a5a3a6687,
         type: 2}
@@ -494,7 +494,7 @@ Prefab:
     - target: {fileID: 224848124595649226, guid: a7f4210ab82054b2296c957a5a3a6687,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -534.375
       objectReference: {fileID: 0}
     - target: {fileID: 1828521046277632, guid: a7f4210ab82054b2296c957a5a3a6687, type: 2}
       propertyPath: m_IsActive
