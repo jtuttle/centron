@@ -28,17 +28,28 @@ public class Tuning {
   }
 
   public int MaxPlayerBaseHealth;
+  public float LateGameUnitSpawnRateMinimum;
+  public float LateGameUnitSpawnRateMaximum;
+  public float GameDuration;
+  public float StartingMovementRate;
+  public float LateGameMovementRate;
+  public float StartingUnitSpawnRateMinimum;
+  public float StartingUnitSpawnRateMaximum;
+  public int MaxNumberOfTimesALaneCanSpawnUnitsInSuccession;
   public float PlayerWaveAttacksPerCooldown;
-  public float UnitSpawnFrequencyMinimum;
-  public float UnitSpawnFrequencyMaximum;
-  public float MaxNumberOfTimesALaneCanSpawnUnitsInSuccession;
-  public float EnemyMovementRate;
-
+  public float MaxEnergyOfHighPitchAttack;
+  public float EnergyLostPerShotOfHighPitchAttack;
+  public float EnergyGrowthRateOfHighPitchAttack;
   public float HighPitchAttackRange;
   public float HighPitchAttackDuration;
-  public float HighPitchAttackCooldown;
-  public float AngleofHighPitchAttack;
+  public float HighPitchCooldown;
+  public float LowPitchAttackRange;
   public float LowPitchAttackDuration;
   public float LowPitchAttackCooldown;
-  public float AngleofLowPitchAttack;
+
+  // These are probably going to get deleted
+  public float EnemyMovementRate;
+  public float UnitSpawnFrequencyMinimum;
+  public float UnitSpawnFrequencyMaximum;
+  public float HighPitchAttackCooldown;
 }
