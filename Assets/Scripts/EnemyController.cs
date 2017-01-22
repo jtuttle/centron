@@ -50,16 +50,17 @@ public class EnemyController : MonoBehaviour {
   }
 
   void spawnEnemy(Vector3 m_spawnPos) {
-    GameObject enemy = getEnemyInstance(m_spawnPos);
-    m_Enemies.Add(enemy);
-    GameObject trail = Instantiate(trailerRendererPrefab, enemy.transform);
-    trail.transform.localPosition = Vector3.zero;
     GameObject spawnEffect = GameObject.Instantiate(m_EnemySpawnEffect);
     spawnEffect.transform.position = m_spawnPos;
   }
 
   void addActiveEnemy(Vector3 position) {
-    m_Enemies.Add(getEnemyInstance(position));
+    GameObject enemy = getEnemyInstance(position);
+    m_Enemies.Add(enemy);
+
+    GameObject trail = Instantiate(trailerRendererPrefab, enemy.transform);
+    trail.transform.localPosition = Vector3.zero;
+
     EventModule.Event(EventType.SPAWN_ENEMY);
   }
 
