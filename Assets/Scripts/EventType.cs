@@ -4,4 +4,5 @@
   public static string WAVE_SHOOT_READY = "WaveShootReady";
   public static string ENEMY_HIT = "EnemyEvent";
   public static string GAME_OVER = "GameOver";
+  public static string GAME_OVER_ANIMATION_COMPLETE = "GameOverAnimationComplete";
 }
