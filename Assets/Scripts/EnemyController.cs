@@ -123,7 +123,7 @@ public class EnemyController : MonoBehaviour {
   }
 
   void handleGameObjectEvent(string eventName, GameObject gameObject) {
-    if(eventName == Event.ENEMY_KILLED) {
+    if(eventName == EventType.ENEMY_KILLED) {
       handleEnemyKilled(gameObject);
     }
   }

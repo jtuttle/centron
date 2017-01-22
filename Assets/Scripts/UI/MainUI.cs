@@ -52,7 +52,7 @@ public class MainUI : UI {
   }
 
   void handleNamedEvent(string eventName) {
-    if(eventName == Event.GAME_OVER) {
+    if(eventName == EventType.GAME_OVER) {
       LoadGameOver();
     }
   }
