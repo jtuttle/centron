@@ -6,7 +6,7 @@ public enum WaveType {
   Low, High
 }
 
-public class Base : MonoBehaviour {
+public class PlayerBase : MonoBehaviour {
   public int Health = 100;
   public float Cooldown = 100;
   public WaveType CurrentWaveType;
