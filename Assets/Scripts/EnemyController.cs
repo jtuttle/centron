@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
+  public GameObject trailerRendererPrefab;
+  public Gradient enemyTrailGradient;
   public float m_SpawnCircleRadius = 9f;
   public int m_NumSpawnPoints = 5;
   private Vector3[] m_SpawnSpots;
@@ -45,7 +47,10 @@ public class EnemyController : MonoBehaviour {
   }
 
   void spawnEnemy(Vector3 m_spawnPos) {
-    m_Enemies.Add(getEnemyInstance(m_spawnPos));
+    GameObject enemy = getEnemyInstance(m_spawnPos);
+    m_Enemies.Add(enemy);
+    GameObject trail = Instantiate(trailerRendererPrefab, enemy.transform);
+    trail.transform.localPosition = Vector3.zero;
   }
 
   GameObject getEnemyInstance(Vector3 m_spawnPos) {
@@ -74,6 +79,7 @@ public class EnemyController : MonoBehaviour {
   void handleEnemyKilled(GameObject enemy) {
     m_Enemies.Remove(enemy);
     enemy.SetActive(false);
+    Destroy(enemy.transform.GetChild(0).gameObject);
     m_EnemiesSpawnPool.Push(enemy);
   }
 
@@ -90,14 +96,16 @@ public class EnemyController : MonoBehaviour {
       + Tuning.Get.StartingMovementRate;
 
     foreach (GameObject enemy in m_Enemies) {
-      enemy.transform.position = Vector3.MoveTowards(
-        enemy.transform.position, 
-        Vector3.zero,
-        moveRate * Time.deltaTime);
+      if (enemy) {
+        enemy.transform.position = Vector3.MoveTowards(
+          enemy.transform.position, 
+          Vector3.zero,
+          moveRate * Time.deltaTime);
 
-      if (enemy.transform.position.magnitude < m_PlanetSize) {
-        HitPlanet(enemy);
-        enemiesToDestroy.Add(enemy);
+        if (enemy.transform.position.magnitude < m_PlanetSize) {
+          HitPlanet(enemy);
+          enemiesToDestroy.Add(enemy);
+        }
       }
     }
     for (int i = 0; i < enemiesToDestroy.Count; i++) {
