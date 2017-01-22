@@ -19,12 +19,17 @@ public class MainUI : UI {
   Text highScoreTimerText;
   [SerializeField]
   Text waveTypeText;
+  [SerializeField]
+  Text enemiesDestroyedText;
+  [SerializeField]
+  int stringLengthEnemiesDestroyed = 5;
   Timer highScoreTimer;
 
   void Awake () {
     highScoreTimer = new Timer(0, -1);
     highScoreTimer.SubscribeToTimeChange(handleTimerTimeChange);
     highScoreTimer.Begin();
+    enemiesDestroyed = 0;
   }
     
   void Start() {
@@ -54,6 +59,8 @@ public class MainUI : UI {
   void handleNamedEvent(string eventName) {
     if(eventName == EventType.GAME_OVER) {
       LoadGameOver();
+    } else if (eventName == EventType.ENEMY_KILLED) {
+      handleEnemyKilled();
     }
   }
 
@@ -70,7 +77,13 @@ public class MainUI : UI {
   public void UpdateCooldown(float amount) {
     cooldownBar.fillAmount = amount;
   }
-  
+
+  void handleEnemyKilled() {
+    enemiesDestroyed++;
+    Debug.Log(enemiesDestroyed);
+    enemiesDestroyedText.text = padWithZeroes(enemiesDestroyed, stringLengthEnemiesDestroyed);
+  }
+
   public float GetGameTime() {
     return highScoreTimer.TimeRemaining;
   }
