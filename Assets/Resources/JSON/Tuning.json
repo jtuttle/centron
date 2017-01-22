@@ -13,5 +13,6 @@
 "HighPitchAttackDuration" : 1,
 "HighPitchAttackCooldown" : 2,
 "LowPitchAttackDuration" : 1,
-"LowPitchAttackCooldown" : 3
+"LowPitchAttackCooldown" : 3,
+"EnergyGrowthRateOfHighPitchAttack" : 0.1
 }
