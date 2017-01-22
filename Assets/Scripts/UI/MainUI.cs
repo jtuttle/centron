@@ -79,7 +79,12 @@ public class MainUI : UI {
 
   // Amount should be between 0..1.0f
   public void UpdateCooldown(PlayerBase player) {
-    highWaveCooldownBar.fillAmount = player.GetCooldownPercentage(WaveType.High);
+    if(player.HighWaveCooldown == 0) {
+      highWaveCooldownBar.fillAmount = player.GetHighWaveEnergyPercentage();
+    } else {
+      highWaveCooldownBar.fillAmount = player.GetCooldownPercentage(WaveType.High);
+    }
+
     lowWaveCooldownBar.fillAmount = player.GetCooldownPercentage(WaveType.Low);
   }
 
