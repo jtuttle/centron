@@ -151,6 +151,7 @@ public class PlayerBase : MonoBehaviour {
 
     if(Health <= 0) {
       EventModule.Event(EventType.GAME_OVER);
+      GameObject.Destroy(gameObject);
     }
   }
 
