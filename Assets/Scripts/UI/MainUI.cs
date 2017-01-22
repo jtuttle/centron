@@ -14,16 +14,20 @@ public class MainUI : UI {
   [SerializeField]
   Image healthBar;
   [SerializeField]
-  Image cooldownBar;
+  Image highWaveCooldownBar;
+  [SerializeField]
+  Image lowWaveCooldownBar;
   [SerializeField]
   Text highScoreTimerText;
-  [SerializeField]
-  Text waveTypeText;
   [SerializeField]
   Text enemiesDestroyedText;
   [SerializeField]
   int stringLengthEnemiesDestroyed = 5;
   Timer highScoreTimer;
+  [SerializeField]
+  Image highSelector;
+  [SerializeField]
+  Image lowSelector;
 
   void Awake() {
     highScoreTimer = new Timer(0, -1);
@@ -38,9 +42,9 @@ public class MainUI : UI {
 
   public void Update() {
     if(PlayerBase != null) {
-      UpdateCooldown(PlayerBase.GetCooldownPercentage());
+      UpdateCooldown(PlayerBase);
       UpdateHealth(PlayerBase.GetHealthPercentage());
-      UpdateWaveType(PlayerBase.CurrentWaveType.ToString());
+      UpdateWaveType(PlayerBase.CurrentWaveType);
     }
     // DEGBUGING ONLY:
     #if UNITY_EDITOR
@@ -74,8 +78,9 @@ public class MainUI : UI {
   }
 
   // Amount should be between 0..1.0f
-  public void UpdateCooldown(float amount) {
-    cooldownBar.fillAmount = amount;
+  public void UpdateCooldown(PlayerBase player) {
+    highWaveCooldownBar.fillAmount = player.GetCooldownPercentage(WaveType.High);
+    lowWaveCooldownBar.fillAmount = player.GetCooldownPercentage(WaveType.Low);
   }
 
   void handleEnemyKilled() {
@@ -87,7 +92,16 @@ public class MainUI : UI {
     return highScoreTimer.TimeRemaining;
   }
 
-  private void UpdateWaveType(string waveType) {
-    waveTypeText.text = waveType;
+  private void UpdateWaveType(WaveType waveType) {
+    switch(waveType) {
+      case WaveType.High:
+        highSelector.enabled = true;
+        lowSelector.enabled = false;
+        break;
+      case WaveType.Low:
+        highSelector.enabled = false;
+        lowSelector.enabled = true;
+        break;
+    }
   }
 }

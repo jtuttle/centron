@@ -327,46 +327,6 @@ Prefab:
       propertyPath: PlayerBase
       value: 
       objectReference: {fileID: 917358364}
-    - target: {fileID: 224789851505899510, guid: 422242708642743ebaf5022697e13bc8,
-        type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224789851505899510, guid: 422242708642743ebaf5022697e13bc8,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224789851505899510, guid: 422242708642743ebaf5022697e13bc8,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 137.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224789851505899510, guid: 422242708642743ebaf5022697e13bc8,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -50
-      objectReference: {fileID: 0}
-    - target: {fileID: 224493983325729950, guid: 422242708642743ebaf5022697e13bc8,
-        type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224493983325729950, guid: 422242708642743ebaf5022697e13bc8,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224493983325729950, guid: 422242708642743ebaf5022697e13bc8,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 137.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224493983325729950, guid: 422242708642743ebaf5022697e13bc8,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -100
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 422242708642743ebaf5022697e13bc8, type: 2}
   m_IsPrefabParent: 0
@@ -736,7 +696,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
-  Cooldown: 0
+  HighWaveCooldown: 0
+  LowWaveCooldown: 0
   LastShootWaveType: 0
   CurrentWaveType: 0
 --- !u!1 &981197149
@@ -1007,6 +968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 689ce6587f63442bf9e44f07f36e4774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 917358364}
   switchWaveKey: 32
 --- !u!1 &1725852435
 GameObject:

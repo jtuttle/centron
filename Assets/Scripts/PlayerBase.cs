@@ -9,7 +9,9 @@ public enum WaveType {
 public class PlayerBase : MonoBehaviour {
   public int Health;
 
-  public float Cooldown = 0;
+  public float HighWaveCooldown = 0;
+  public float LowWaveCooldown = 0;
+
   public WaveType LastShootWaveType;
 
   public WaveType CurrentWaveType;
@@ -17,7 +19,6 @@ public class PlayerBase : MonoBehaviour {
   public void Awake() {
     EventModule.Subscribe(OnEvent);
     Health = Tuning.Get.MaxPlayerBaseHealth;
-    //Health = 1;
   }
 
   public void Update() {
@@ -32,23 +33,41 @@ public class PlayerBase : MonoBehaviour {
     return Health / (float)Tuning.Get.MaxPlayerBaseHealth;
   }
 
-  public float GetCooldownPercentage() {
-    float total = GetCooldownForWaveType(LastShootWaveType);
-    return Cooldown / total;
+  public float GetCooldownPercentage(WaveType type) {
+    float total = GetCooldownForWaveType(type);
+    switch(type) {
+      case WaveType.High:
+        return HighWaveCooldown / total;
+      case WaveType.Low:
+        return LowWaveCooldown / total;
+      default:
+        return default(float);
+    }
   }
 
-  public bool WaveShootIsAllowed() {
-    return Cooldown == 0;
+  public bool WaveShootIsAllowed(WaveType type) {
+    switch(type) {
+      case WaveType.High:
+        return HighWaveCooldown <= 0;
+      case WaveType.Low:
+        return LowWaveCooldown <= 0;
+      default:
+        return default(bool);
+    }
   }
 
   private void UpdateCooldown() {
-    float nextCooldown = Mathf.Max(0, Cooldown - Time.deltaTime);
-
-    if(Cooldown > 0 && nextCooldown == 0) {
-      EventModule.Event(EventType.WAVE_SHOOT_READY);
+    float nextHighCooldown = Mathf.Max(0, HighWaveCooldown - Time.deltaTime);
+    if(HighWaveCooldown > 0 && nextHighCooldown <= 0) {
+      EventModule.Event(EventType.HIGH_WAVE_READY);
     }
+    HighWaveCooldown = nextHighCooldown;
 
-    Cooldown = nextCooldown;
+    float nextLowCooldown = Mathf.Max(0, LowWaveCooldown - Time.deltaTime);
+    if(LowWaveCooldown > 0 && nextLowCooldown <= 0) {
+      EventModule.Event(EventType.LOW_WAVE_READY);
+    }
+    LowWaveCooldown = nextLowCooldown;
   }
 
   private float GetCooldownForWaveType(WaveType waveType) {
@@ -57,8 +76,10 @@ public class PlayerBase : MonoBehaviour {
   }
 
   private void OnEvent(string eventType) {
-    if(eventType == EventType.SHOOT_WAVE) {
-      OnShootWave();
+    if(eventType == EventType.SHOOT_HIGH_WAVE) {
+      OnShootWave(WaveType.High);
+    } else if (eventType == EventType.SHOOT_LOW_WAVE) {
+      OnShootWave(WaveType.Low);
     } else if (eventType == EventType.SWITCH_WAVE_TYPE) {
       OnSwitchWaveType();
     } else if(eventType == EventType.ENEMY_HIT) {
@@ -66,9 +87,16 @@ public class PlayerBase : MonoBehaviour {
     }
   }
 
-  private void OnShootWave() {
+  private void OnShootWave(WaveType waveType) {
     LastShootWaveType = CurrentWaveType;
-    Cooldown = GetCooldownForWaveType(CurrentWaveType);
+    switch (waveType) {
+      case WaveType.High:
+        HighWaveCooldown = GetCooldownForWaveType(CurrentWaveType);
+        break;
+      case WaveType.Low:
+        LowWaveCooldown = GetCooldownForWaveType(CurrentWaveType);
+        break;
+    }
   }
 
   private void OnEnemyHit() {
