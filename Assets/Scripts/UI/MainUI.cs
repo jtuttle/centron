@@ -45,7 +45,10 @@ public class MainUI : UI {
       UpdateCooldown(PlayerBase);
       UpdateHealth(PlayerBase.GetHealthPercentage());
       UpdateWaveType(PlayerBase.CurrentWaveType);
+    } else {
+      UpdateHealth(0);
     }
+
     // DEGBUGING ONLY:
     #if UNITY_EDITOR
     if (Input.GetKeyDown(KeyCode.Q)) {
