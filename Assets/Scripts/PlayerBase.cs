@@ -88,6 +88,9 @@ public class PlayerBase : MonoBehaviour {
   private void UpdateCooldown() {
     float nextHighCooldown = Mathf.Max(0, HighWaveCooldown - Time.deltaTime);
     if(HighWaveCooldown > 0 && nextHighCooldown <= 0) {
+      if(CurrentWaveType == WaveType.High)
+        _cannonGlowSprite.enabled = true;
+
       EventModule.Event(EventType.HIGH_WAVE_READY);
     }
     HighWaveCooldown = nextHighCooldown;
@@ -127,6 +130,7 @@ public class PlayerBase : MonoBehaviour {
         _highWaveEnergy = Mathf.Max(0, _highWaveEnergy - _highWaveEnergyDecrement);
 
         if(_highWaveEnergy == 0) {
+          _cannonGlowSprite.enabled = false;
           HighWaveCooldown = GetCooldownForWaveType(CurrentWaveType);
           _highWaveEnergy = _highWaveEnergyMax;
           EventModule.Event(EventType.HIGH_WAVE_OVERHEATED);
@@ -153,10 +157,15 @@ public class PlayerBase : MonoBehaviour {
   private void OnSwitchWaveType() {
     if(CurrentWaveType == WaveType.Low) {
       _cannonSprite.enabled = true;
+
+      if(HighWaveCooldown == 0)
+        _cannonGlowSprite.enabled = true;
+
       _ringGlowSprite.enabled = false;
       CurrentWaveType = WaveType.High;
     } else {
       _cannonSprite.enabled = false;
+      _cannonGlowSprite.enabled = false;
       _ringGlowSprite.enabled = true;
       CurrentWaveType = WaveType.Low;
     }
