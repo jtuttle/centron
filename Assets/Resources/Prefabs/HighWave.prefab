@@ -181,7 +181,7 @@ ParticleSystem:
     serializedVersion: 3
     enabled: 1
     startLifetime:
-      scalar: 0.5
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -199,7 +199,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 2
           time: 0
-          value: 0.2
+          value: 0.1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -607,7 +607,7 @@ ParticleSystem:
     enabled: 1
     serializedVersion: 3
     rateOverTime:
-      scalar: 512
+      scalar: 1024
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1641,9 +1641,9 @@ ParticleSystem:
     inWorldSpace: 0
     dampen: 1
   NoiseModule:
-    enabled: 0
+    enabled: 1
     strength:
-      scalar: 1
+      scalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1759,10 +1759,10 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
       minMaxState: 0
-    separateAxes: 0
-    frequency: 0.5
-    damping: 1
-    octaves: 1
+    separateAxes: 1
+    frequency: 0.2
+    damping: 0
+    octaves: 4
     octaveMultiplier: 0.5
     octaveScale: 2
     quality: 2

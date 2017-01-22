@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
-  public float m_SpawnCircleRadius = 9f;
+  public float m_SpawnCircleRadius = 12f;
   public int m_NumSpawnPoints = 5;
   private Vector3[] m_SpawnSpots;
   public GameObject m_EnemyPrefab;
+  public GameObject m_EnemySpawnEffect;
   public float m_PlanetSize;
 
   private List<GameObject> m_Enemies;
@@ -38,14 +39,22 @@ public class EnemyController : MonoBehaviour {
     _timer = 0f;
     _nextSpawnTime = GetRandomSpawnTime(); 
     EventModule.Subscribe(handleGameObjectEvent);
+    EventModule.Subscribe(handleVector3Event);
   }
 
   void OnDestroy() {
+    EventModule.Unsubscribe(handleVector3Event);
     EventModule.Unsubscribe(handleGameObjectEvent);
   }
 
   void spawnEnemy(Vector3 m_spawnPos) {
-    m_Enemies.Add(getEnemyInstance(m_spawnPos));
+    GameObject spawnEffect = GameObject.Instantiate(m_EnemySpawnEffect);
+    spawnEffect.transform.position = m_spawnPos;
+  }
+
+  void addActiveEnemy(Vector3 position) {
+    m_Enemies.Add(getEnemyInstance(position));
+    EventModule.Event(EventType.SPAWN_ENEMY);
   }
 
   GameObject getEnemyInstance(Vector3 m_spawnPos) {
@@ -139,9 +148,15 @@ public class EnemyController : MonoBehaviour {
     if (enemy.activeInHierarchy) EventModule.Event(EventType.ENEMY_HIT);
   }
 
-  void handleGameObjectEvent(string eventName, GameObject gameObject) {
-    if(eventName == EventType.ENEMY_KILLED) {
+  void handleGameObjectEvent(string eventType, GameObject gameObject) {
+    if(eventType == EventType.ENEMY_KILLED) {
       handleEnemyKilled(gameObject);
+    }
+  }
+
+  void handleVector3Event(string eventType, Vector3 position) {
+    if(eventType == EventType.ENEMY_SPAWN_ANIMATION_COMPLETE) {
+      addActiveEnemy(position);
     }
   }
 }
