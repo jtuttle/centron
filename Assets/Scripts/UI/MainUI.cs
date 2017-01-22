@@ -9,9 +9,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainUI : MonoBehaviour {
+public class MainUI : UI {
   public PlayerBase PlayerBase;
-
   [SerializeField]
   Image healthBar;
   [SerializeField]
