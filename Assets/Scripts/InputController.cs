@@ -3,12 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InputController : MonoBehaviour {
-  void Start() {
-    
+  public enum InputEvent {
+    ShootWave, SwitchWaveType
   }
-	
+
   void Update() {
-    Vector3 mousePos = Input.mousePosition;
-    Debug.Log(mousePos);
+    if(Input.GetMouseButtonDown(0)) {
+      ShootWave();
+    }
+
+    if(Input.GetMouseButtonDown(1)) {
+      SwitchWaveType();
+    }
+  }
+
+  private void ShootWave() {
+    EventModule.Event(EventType.SHOOT_WAVE);
+  }
+
+  private void SwitchWaveType() {
+    EventModule.Event(EventType.SWITCH_WAVE_TYPE);
   }
 }
