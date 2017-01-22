@@ -7,7 +7,7 @@ public enum WaveType {
 }
 
 public class PlayerBase : MonoBehaviour {
-  public int Health = 100;
+  public int Health;
 
   public float Cooldown = 0;
   public WaveType LastShootWaveType;
@@ -16,6 +16,7 @@ public class PlayerBase : MonoBehaviour {
 
   public void Awake() {
     EventModule.Subscribe(OnEvent);
+    Health = Tuning.Get.MaxPlayerBaseHealth;
   }
 
   public void Update() {
@@ -23,8 +24,7 @@ public class PlayerBase : MonoBehaviour {
   }
 
   public float GetHealthPercentage() {
-    // TODO
-    return 0;
+    return Health / (float)Tuning.Get.MaxPlayerBaseHealth;
   }
 
   public float GetCooldownPercentage() {
@@ -54,14 +54,20 @@ public class PlayerBase : MonoBehaviour {
   private void OnEvent(string eventType) {
     if(eventType == EventType.SHOOT_WAVE) {
       OnShootWave();
-    } else if(eventType == EventType.SWITCH_WAVE_TYPE) {
+    } else if (eventType == EventType.SWITCH_WAVE_TYPE) {
       OnSwitchWaveType();
-    }
+    } else if(eventType == EventType.ENEMY_HIT) {
+      OnEnemyHit();
+}
   }
 
   private void OnShootWave() {
     LastShootWaveType = CurrentWaveType;
     Cooldown = GetCooldownForWaveType(CurrentWaveType);
+  }
+
+  private void OnEnemyHit() {
+    Health--;
   }
 
   private void OnSwitchWaveType() {

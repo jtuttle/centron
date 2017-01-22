@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,8 +13,9 @@ public class EnemyController : MonoBehaviour {
 
   private List<GameObject> m_Enemies;
   private Stack<GameObject> m_EnemiesSpawnPool = new Stack<GameObject>();
-  //private GameObject[] m_Enemies;
+  private float timer;
 
+  //private GameObject[] m_Enemies;
 
   void Awake() {
     m_SpawnSpots = new Vector3[m_NumSpawnPoints];
@@ -47,6 +49,7 @@ public class EnemyController : MonoBehaviour {
     } else {
       return createNewEnemyInstance(m_spawnPos);
     }
+    timer = 0f;
   }
 
   GameObject createNewEnemyInstance(Vector3 m_spawnPos) {
@@ -71,12 +74,20 @@ public class EnemyController : MonoBehaviour {
 
   // Update is called once per frame
   void Update() {
+
+    //CheckSpawn();
+
     foreach (GameObject enemy in m_Enemies) {
       enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, Vector3.zero, m_EnemySpeed * Time.deltaTime);
 
       if (enemy.transform.position.magnitude < m_PlanetSize)
-        enemy.SetActive(false);
+        HitPlanet(enemy);
     }
+  }
+
+  private void HitPlanet(GameObject enemy) {
+    if (enemy.activeInHierarchy) EventModule.Event(EventType.ENEMY_HIT);
+    handleEnemyKilled(enemy);
   }
 }
 
