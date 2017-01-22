@@ -16,8 +16,8 @@ public class PlayerBase : MonoBehaviour {
 
   public void Awake() {
     EventModule.Subscribe(OnEvent);
-    //Health = Tuning.Get.MaxPlayerBaseHealth;
-    Health = 1;
+    Health = Tuning.Get.MaxPlayerBaseHealth;
+    //Health = 1;
   }
 
   public void Update() {
