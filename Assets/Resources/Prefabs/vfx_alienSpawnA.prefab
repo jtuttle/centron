@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4862941902513952}
   - component: {fileID: 212807209044835688}
   - component: {fileID: 95749642017077134}
+  - component: {fileID: 114606332145518922}
   m_Layer: 0
   m_Name: vfx_alienSpawnA
   m_TagString: Untagged
@@ -48,7 +49,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1996993646644306}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 00f22604e34b5478da9ab9867c64d667, type: 2}
   m_CullingMode: 0
@@ -58,6 +59,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114606332145518922
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1996993646644306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c225a1f9543cf442e9b63d2221d7f016, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212807209044835688
 SpriteRenderer:
   m_ObjectHideFlags: 1
