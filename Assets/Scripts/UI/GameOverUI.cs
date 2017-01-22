@@ -15,12 +15,17 @@ public class GameOverUI : UI
   Text timeSurvived;
   [SerializeField]
   Text enemiesKilled;
+  [SerializeField]
+  Text newHighScore;
 
   string enemiesDestroyedFormat = "{0} Enemies";
 
   void Awake() {
     timeSurvived.text = PlayerPrefs.GetString(TIME_SURVIVED);
     enemiesKilled.text = string.Format(enemiesDestroyedFormat, enemiesDestroyed);
+    if(enemiesDestroyed > highScore) {
+      highScore = enemiesDestroyed;
+      newHighScore.enabled = true;
+    }
   }
- 
 }
