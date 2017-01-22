@@ -21,6 +21,6 @@ public class Wave : MonoBehaviour {
   }
 
   public float GetEndScale() {
-    return 0.8f;
+    return (WaveType == WaveType.Low) ? 0.8f : 2.0f;
   }
 }
