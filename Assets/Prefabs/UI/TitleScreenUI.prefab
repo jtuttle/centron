@@ -278,6 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highScoreDisplay: {fileID: 114300594164503886}
+  quitButton: {fileID: 1052216457063874}
 --- !u!114 &114295580617634952
 MonoBehaviour:
   m_ObjectHideFlags: 1

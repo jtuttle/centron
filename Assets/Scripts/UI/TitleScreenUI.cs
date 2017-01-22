@@ -12,9 +12,14 @@ using UnityEngine.UI;
 public class TitleScreenUI : UI {
   [SerializeField]
   Text highScoreDisplay;
+  [SerializeField]
+  GameObject quitButton;
 
   void Start() {
     highScoreDisplay.text = getHighScoreText();
+    #if UNITY_WEBGL
+    quitButton.SetActive(false);
+    #endif
   }
 
 }
