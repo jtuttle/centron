@@ -6,9 +6,8 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour {
   public float m_SpawnCircleRadius = 8f;
   public int m_NumSpawnPoints = 5;
-  public Vector3[] m_SpawnSpots;
+  private Vector3[] m_SpawnSpots;
   public GameObject m_EnemyPrefab;
-  public float m_EnemySpeed;
   public float m_PlanetSize;
 
   private List<GameObject> m_Enemies;
