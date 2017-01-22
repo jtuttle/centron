@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class EnemyController : MonoBehaviour {
   public float m_PlanetSize;
 
   private List<GameObject> m_Enemies;
+  private float timer;
 
   //private GameObject[] m_Enemies;
 
@@ -35,17 +37,26 @@ public class EnemyController : MonoBehaviour {
     foreach (Vector3 pos in m_SpawnSpots) {
       m_Enemies.Add(GameObject.Instantiate(m_EnemyPrefab, pos, Quaternion.identity) as GameObject);
     }
+    timer = 0f;
   }
 
 
   // Update is called once per frame
   void Update() {
+
+    //CheckSpawn();
+
     foreach (GameObject enemy in m_Enemies) {
       enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, Vector3.zero, m_EnemySpeed * Time.deltaTime);
 
       if (enemy.transform.position.magnitude < m_PlanetSize)
-        enemy.SetActive(false);
+        HitPlanet(enemy);
     }
+  }
+
+  private void HitPlanet(GameObject enemy) {
+    if (enemy.activeInHierarchy) EventModule.Event(EventType.ENEMY_HIT);
+    enemy.SetActive(false);
   }
 }
 
