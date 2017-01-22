@@ -8,13 +8,11 @@ using System.Globalization;
 using UnityEngine;
 
 [Serializable]
-public abstract class Data 
-{
+public abstract class Data {
 	public delegate void DataAction();
 	public delegate void DataActionf(float value);
 	
-	protected string padWithZeroes(int number, int desiredLength) 
-	{
+	protected string padWithZeroes(int number, int desiredLength) {
 		string numberAsString = number.ToString();
 		int numberLength = numberAsString.Length;
 		if(numberLength < desiredLength) 
