@@ -23,4 +23,8 @@ public class PauseUI : UI
     pauseScreen.SetActive(false);
   }
 
+  void OnDestroy() {
+    Time.timeScale = 1;
+  }
+
 }
