@@ -975,7 +975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4aea02a141054dd3b4c68680fe0bc57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 100
+  Health: 10
   HighWaveCooldown: 0
   LowWaveCooldown: 0
   LastShootWaveType: 1

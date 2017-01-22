@@ -1,5 +1,5 @@
 {
-    "MaxPlayerBaseHealth" : 30,
+	"MaxPlayerBaseHealth" : 10,
 	"LateGameUnitSpawnRateMinimum" : 1.5,
 	"LateGameUnitSpawnRateMaximum" : 3,
 	"GameDuration" : 2,
