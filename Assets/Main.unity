@@ -978,8 +978,8 @@ MonoBehaviour:
   Health: 100
   HighWaveCooldown: 0
   LowWaveCooldown: 0
-  LastShootWaveType: 0
-  CurrentWaveType: 0
+  LastShootWaveType: 1
+  CurrentWaveType: 1
 --- !u!1 &981197149
 GameObject:
   m_ObjectHideFlags: 0

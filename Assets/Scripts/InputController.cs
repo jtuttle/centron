@@ -26,6 +26,7 @@ public class InputController : MonoBehaviour {
       if (canShootCurrentWave() && Input.GetMouseButtonDown(0)) {
         ShootWave(player.CurrentWaveType);
       }
+
       if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(switchWaveKey)) {
         SwitchWaveType();
       }
@@ -38,9 +39,11 @@ public class InputController : MonoBehaviour {
   }
 
   public void OnEvent(string eventType) {
-    if(eventType == EventType.HIGH_WAVE_READY) {
+    if(eventType == EventType.HIGH_WAVE_OVERHEATED) {
+      _highWaveReady = false;
+    } else if(eventType == EventType.HIGH_WAVE_READY) {
       _highWaveReady = true;
-    } else if (eventType == EventType.LOW_WAVE_READY) {
+    } else if(eventType == EventType.LOW_WAVE_READY) {
       _lowWaveReady = true;
     }
   }
@@ -48,7 +51,6 @@ public class InputController : MonoBehaviour {
   private void ShootWave(WaveType waveType) {
     switch(waveType) {
       case WaveType.High:
-        _highWaveReady = false;
         EventModule.Event(EventType.SHOOT_HIGH_WAVE);
         break;
       case WaveType.Low:
