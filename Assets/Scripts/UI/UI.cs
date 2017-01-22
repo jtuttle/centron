@@ -18,6 +18,20 @@ public class UI : MonoBehaviour
 
   protected const string TIME_SURVIVED = "TimeSurvived";
   const string ENEMIES_KILLED = "EnemiesKilled";
+  const string HIGH_SCORE = "HighScore";
+
+  string highScoreFormat = "High Score: {0}";
+
+  protected int highScoreZeroes = 5;
+
+  protected int highScore {
+    get {
+      return PlayerPrefs.GetInt(HIGH_SCORE, 0);
+    }
+    set {
+      PlayerPrefs.SetInt(HIGH_SCORE, value);
+    }
+  }
 
   protected int enemiesDestroyed {
     get {
@@ -50,6 +64,10 @@ public class UI : MonoBehaviour
     #else
       Application.Quit();
     #endif
+  }
+
+  protected string getHighScoreText() {
+    return string.Format(highScoreFormat, padWithZeroes(highScore, highScoreZeroes));
   }
 
   protected string padWithZeroes(int number, int desiredLength) 
