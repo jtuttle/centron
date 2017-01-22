@@ -23,18 +23,16 @@ public class MainUI : MonoBehaviour {
   Timer highScoreTimer;
 
   void Awake () {
-    EventModule.Subscribe(OnEvent);
-
     highScoreTimer = new Timer(0, -1);
     highScoreTimer.SubscribeToTimeChange(handleTimerTimeChange);
     highScoreTimer.Begin();
-
-    UpdateWaveType();
   }
 
   public void Update() {
     if(PlayerBase != null) {
       UpdateCooldown(PlayerBase.GetCooldownPercentage());
+      UpdateHealth(PlayerBase.GetHealthPercentage());
+      UpdateWaveType(PlayerBase.CurrentWaveType.ToString());
     }
   }
 
@@ -56,13 +54,7 @@ public class MainUI : MonoBehaviour {
     return highScoreTimer.TimeRemaining;
   }
 
-  private void OnEvent(string eventType) {
-    if(eventType == EventType.SWITCH_WAVE_TYPE) {
-      UpdateWaveType();
-    }
-  }
-
-  private void UpdateWaveType() {
-    waveTypeText.text = PlayerBase.CurrentWaveType.ToString();
+  private void UpdateWaveType(string waveType) {
+    waveTypeText.text = waveType;
   }
 }
