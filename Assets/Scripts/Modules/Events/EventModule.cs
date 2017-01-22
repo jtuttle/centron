@@ -38,6 +38,9 @@ public class EventModule : Module, IEventModule {
   public delegate void NamedGameObjectEvent (string valueKey, GameObject gameObject);
   public event NamedGameObjectEvent OnNamedGameObjectEvent;
 
+  public delegate void NamedVector3Event (string valueKey, Vector3 gameObject);
+  public event NamedVector3Event OnNamedVector3Event;
+
 	#endregion
 
 	#region MonoBehaviourExtended Overrides
@@ -92,6 +95,12 @@ public class EventModule : Module, IEventModule {
     }
   }
 
+  public void InstanceEvent(string eventName, Vector3 vec3) {
+    if(OnNamedVector3Event != null) {
+      OnNamedVector3Event(eventName, vec3);
+    }
+  }
+
 	#endregion
 
 	#region Instance Event Subscription
@@ -120,10 +129,14 @@ public class EventModule : Module, IEventModule {
     OnNamedGameObjectEvent += action;
   }
 
-	public void InstanceUnsubscribe (NamedEventAction action) {
+  public void InstanceSubscribe (NamedVector3Event action) {
+    OnNamedVector3Event += action;
+  }
+	
+  public void InstanceUnsubscribe (NamedEventAction action) {
 		OnNamedEvent -= action;
 	}
-
+    
 	public void InstanceUnsubscribe (NamedFloatAction action) {
 		OnNamedFloatEvent -= action;
 	}
@@ -142,6 +155,10 @@ public class EventModule : Module, IEventModule {
 
   public void InstanceUnsubscribe (NamedGameObjectEvent action) {
     OnNamedGameObjectEvent -= action;
+  }
+
+  public void InstanceUnsubscribe (NamedVector3Event action) {
+    OnNamedVector3Event -= action;
   }
 
 	#endregion
@@ -181,6 +198,12 @@ public class EventModule : Module, IEventModule {
   public static void Event(string eventName, GameObject gameObject) {
     if(HasInstance) {
       Instance.InstanceEvent(eventName, gameObject);
+    }
+  }
+
+  public static void Event(string eventName, Vector3 vec3) {
+    if(HasInstance) {
+      Instance.InstanceEvent(eventName, vec3);
     }
   }
 
@@ -224,6 +247,12 @@ public class EventModule : Module, IEventModule {
     }
   }
 
+  public static void Subscribe (NamedVector3Event action) {
+    if(HasInstance) {
+      Instance.InstanceSubscribe(action);
+    }
+  }
+
 	public static void Unsubscribe (NamedEventAction action) {
 		if (HasInstance) {
 			Instance.InstanceUnsubscribe(action);
@@ -255,6 +284,12 @@ public class EventModule : Module, IEventModule {
 	}
 
   public static void Unsubscribe (NamedGameObjectEvent action) {
+    if (HasInstance) {
+      Instance.InstanceUnsubscribe(action);
+    }
+  }
+
+  public static void Unsubscribe (NamedVector3Event action) {
     if (HasInstance) {
       Instance.InstanceUnsubscribe(action);
     }
