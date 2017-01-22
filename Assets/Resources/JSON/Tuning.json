@@ -24,6 +24,7 @@
     "HighPitchAttackRange" : 8,
     "HighPitchAttackDuration" : 1,
     "AngleofHighPitchAttack" : 80,
-    "AngleofLowPitchAttack" : 360
+    "AngleofLowPitchAttack" : 360,
 
+	"EnergyGrowthRateOfHighPitchAttack" : 0.1
 }
