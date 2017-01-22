@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
-  public float m_SpawnCircleRadius = 9f;
+  public float m_SpawnCircleRadius = 12f;
   public int m_NumSpawnPoints = 5;
   private Vector3[] m_SpawnSpots;
   public GameObject m_EnemyPrefab;
+  public GameObject m_EnemySpawnEffect;
   public float m_PlanetSize;
 
   private List<GameObject> m_Enemies;
@@ -44,7 +45,13 @@ public class EnemyController : MonoBehaviour {
   }
 
   void spawnEnemy(Vector3 m_spawnPos) {
-    m_Enemies.Add(getEnemyInstance(m_spawnPos));
+    GameObject spawnEffect = GameObject.Instantiate(m_EnemySpawnEffect);
+    spawnEffect.transform.position = m_spawnPos;
+  }
+
+  void addActiveEnemy(GameObject effect) {
+    GameObject.Destroy(effect);
+    m_Enemies.Add(getEnemyInstance(effect.transform.position));
     EventModule.Event(EventType.SPAWN_ENEMY);
   }
 
@@ -121,6 +128,8 @@ public class EnemyController : MonoBehaviour {
   void handleGameObjectEvent(string eventName, GameObject gameObject) {
     if(eventName == EventType.ENEMY_KILLED) {
       handleEnemyKilled(gameObject);
+    } else if(eventName == EventType.ENEMY_SPAWN_ANIMATION_COMPLETE) {
+      addActiveEnemy(gameObject);
     }
   }
 
