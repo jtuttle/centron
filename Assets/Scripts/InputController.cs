@@ -30,6 +30,9 @@ public class InputController : MonoBehaviour {
         SwitchWaveType();
       }
     }
+    if(Input.GetMouseButtonDown(0)) {
+      EventModule.Event(EventType.CLICK);
+    }
   }
 
   bool canShootCurrentWave() {
