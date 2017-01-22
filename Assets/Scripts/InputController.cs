@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour {
   private bool _shootWaveEnabled = true;
-
+  [SerializeField] KeyCode switchWaveKey = KeyCode.Space;
   public enum InputEvent {
     ShootWave, SwitchWaveType
   }
@@ -13,12 +13,16 @@ public class InputController : MonoBehaviour {
     EventModule.Subscribe(OnEvent);
   }
 
+  void OnDestroy() {
+    EventModule.Unsubscribe(OnEvent);
+  }
+
   void Update() {
     if(_shootWaveEnabled && Input.GetMouseButtonDown(0)) {
       ShootWave();
     }
 
-    if(Input.GetMouseButtonDown(1)) {
+    if(Input.GetMouseButtonDown(1) || Input.GetKeyDown(switchWaveKey)) {
       SwitchWaveType();
     }
   }
