@@ -37,6 +37,7 @@ public class EnemyController : MonoBehaviour {
     foreach (Vector3 pos in m_SpawnSpots) {
       spawnEnemy(pos);
     }
+    timer = 0f;
   }
 
   void spawnEnemy(Vector3 m_spawnPos) {
@@ -49,7 +50,6 @@ public class EnemyController : MonoBehaviour {
     } else {
       return createNewEnemyInstance(m_spawnPos);
     }
-    timer = 0f;
   }
 
   GameObject createNewEnemyInstance(Vector3 m_spawnPos) {
