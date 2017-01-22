@@ -80,7 +80,6 @@ public class MainUI : UI {
 
   void handleEnemyKilled() {
     enemiesDestroyed++;
-    Debug.Log(enemiesDestroyed);
     enemiesDestroyedText.text = padWithZeroes(enemiesDestroyed, stringLengthEnemiesDestroyed);
   }
 
