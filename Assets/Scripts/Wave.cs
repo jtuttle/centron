@@ -23,4 +23,11 @@ public class Wave : MonoBehaviour {
   public float GetEndScale() {
     return (WaveType == WaveType.Low) ? 0.8f : 2.0f;
   }
+
+  void OnTriggerEnter2D(Collider2D collider) {
+    GameObject enemy = collider.gameObject;
+    if(enemy.tag.Equals(Tags.ENEMY)) {
+      EventModule.Event(Event.ENEMY_KILLED, enemy);
+    }
+  }
 }

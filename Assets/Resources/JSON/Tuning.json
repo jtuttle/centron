@@ -1,8 +1,8 @@
 {
     "MaxPlayerBaseHealth" : 50,
     "PlayerWaveAttacksPerCooldown" : 1,
-    "UnitSpawnFrequencyMinimum" : 0.1,
-    "UnitSpawnFrequencyMaximum" : 3,
+    "UnitSpawnFrequencyMinimum" : 0.2,
+    "UnitSpawnFrequencyMaximum" : 1.8,
     "MaxNumberOfTimesALaneCanSpawnUnitsInSuccession" : 3,
     "EnemyMovementRate" : 1,
     "HighPitchAttackRange" : 8,
