@@ -33,9 +33,16 @@ public class MainUI : UI {
       UpdateHealth(PlayerBase.GetHealthPercentage());
       UpdateWaveType(PlayerBase.CurrentWaveType.ToString());
     }
+    // DEGBUGING ONLY:
+    #if UNITY_EDITOR
+    if (Input.GetKeyDown(KeyCode.Q)) {
+      LoadGameOver();
+    }
+    #endif
   }
 
   void OnDestroy() {
+    PlayerPrefs.SetString(TIME_SURVIVED, highScoreTimer.TimeRemainingStr);
     highScoreTimer.UnsubscribeFromTimeChange(handleTimerTimeChange);
   }
 
