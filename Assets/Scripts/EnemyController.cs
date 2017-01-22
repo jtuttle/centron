@@ -38,6 +38,11 @@ public class EnemyController : MonoBehaviour {
       spawnEnemy(pos);
     }
     timer = 0f;
+    EventModule.Subscribe(handleGameObjectEvent);
+  }
+
+  void OnDestroy() {
+    EventModule.Unsubscribe(handleGameObjectEvent);
   }
 
   void spawnEnemy(Vector3 m_spawnPos) {
@@ -76,18 +81,28 @@ public class EnemyController : MonoBehaviour {
   void Update() {
 
     //CheckSpawn();
-
+    List<GameObject> enemiesToDestroy = new List<GameObject>();
     foreach (GameObject enemy in m_Enemies) {
       enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, Vector3.zero, m_EnemySpeed * Time.deltaTime);
 
-      if (enemy.transform.position.magnitude < m_PlanetSize)
+      if (enemy.transform.position.magnitude < m_PlanetSize) {
         HitPlanet(enemy);
+        enemiesToDestroy.Add(enemy);
+      }
+    }
+    for (int i = 0; i < enemiesToDestroy.Count; i++) {
+      handleEnemyKilled(enemiesToDestroy[i]);
     }
   }
 
   private void HitPlanet(GameObject enemy) {
     if (enemy.activeInHierarchy) EventModule.Event(EventType.ENEMY_HIT);
-    handleEnemyKilled(enemy);
   }
-}
 
+  void handleGameObjectEvent(string eventName, GameObject gameObject) {
+    if(eventName == Event.ENEMY_KILLED) {
+      handleEnemyKilled(gameObject);
+    }
+  }
+
+}
