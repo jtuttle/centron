@@ -11,7 +11,7 @@
     "StartingMovementRate" : 2,
     "LateGameMovementRate" : 9,
 
-    "HighPitchAttackCooldown" : 0.8,
+    "HighPitchAttackCooldown" : 2,
     "LowPitchAttackCooldown" : 3,
 
     "LowPitchAttackRange" : 2,
