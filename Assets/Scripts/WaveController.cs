@@ -34,10 +34,15 @@ public class WaveController : MonoBehaviour {
 
   private void OnEvent(string eventType) {
     if(eventType == EventType.SHOOT_WAVE) {
+      GameObject prototype;
+
       if(PlayerBase.CurrentWaveType == WaveType.Low) {
-        GameObject prototype = Resources.Load<GameObject>("Prefabs/LowWave");
-        _waves.Add(GameObject.Instantiate(prototype).GetComponent<Wave>());
+        prototype = Resources.Load<GameObject>("Prefabs/LowWave");
+      } else {
+        prototype = Resources.Load<GameObject>("Prefabs/HighWave");
       }
+
+      _waves.Add(GameObject.Instantiate(prototype).GetComponent<Wave>());
     }
   }
 
