@@ -16,13 +16,16 @@ public class MainUI : MonoBehaviour {
   Image cooldownBar;
   [SerializeField]
   Text highScoreTimerText;
-
+  [SerializeField]
+  Text waveTypeText;
   Timer highScoreTimer;
 
   void Awake () {
     highScoreTimer = new Timer(0, -1);
     highScoreTimer.SubscribeToTimeChange(handleTimerTimeChange);
     highScoreTimer.Begin();
+    UpdateWaveType();
+    EventModule.Subscribe(OnSwitchWaveType);
   }
 
   void handleTimerTimeChange(float timeRemaining) {
@@ -38,9 +41,20 @@ public class MainUI : MonoBehaviour {
   public void UpdateCooldown(float amount) {
     healthBar.fillAmount = amount;
   }
-
+      
   public float GetGameTime() {
     return highScoreTimer.TimeRemaining;
   }
+      
+  public void OnSwitchWaveType(string eventType) {
+    if(eventType == EventType.SWITCH_WAVE_TYPE) {
+      UpdateWaveType();
+    }
+  }
 
+  private void UpdateWaveType() {
+    PlayerBase playerBase =
+      GameObject.Find("PlayerBase").GetComponent<PlayerBase>();
+    waveTypeText.text = playerBase.CurrentWaveType.ToString();
+  }
 }

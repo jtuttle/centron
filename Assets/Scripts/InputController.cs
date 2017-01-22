@@ -3,38 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InputController : MonoBehaviour {
-  public GameObject Base;
-
-  private Vector2 _basePos;
-
-  void Start() {
-    _basePos = Camera.main.WorldToScreenPoint(Base.transform.position);
+  public enum InputEvent {
+    ShootWave, SwitchWaveType
   }
-	
-  void Update() {
-    FollowMouse();
 
+  void Update() {
     if(Input.GetMouseButtonDown(0)) {
       ShootWave();
     }
 
     if(Input.GetMouseButtonDown(1)) {
-      SwitchWave();
+      SwitchWaveType();
     }
   }
 
-  private void FollowMouse() {
-    Vector2 dir = (Vector2)Input.mousePosition - _basePos;
-    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-    Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-    Base.transform.rotation = rotation;
-  }
-
   private void ShootWave() {
-    Debug.Log("PEW!");
+    EventModule.Event(EventType.SHOOT_WAVE);
   }
 
-  private void SwitchWave() {
-    Debug.Log("SWITCH!");
+  private void SwitchWaveType() {
+    EventModule.Event(EventType.SWITCH_WAVE_TYPE);
   }
 }
