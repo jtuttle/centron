@@ -9,11 +9,6 @@ public enum WaveType {
 public class PlayerBase : MonoBehaviour {
   public int Health;
 
-  public float HighWaveEnergy = 0;
-  public float HighWaveEnergyMax = 100.0f;
-  public float HighWaveEnergyDecrement = 10f;
-  public float HighWaveEnergyGrowth = 10f;
-
   public float HighWaveCooldown = 0;
   public float LowWaveCooldown = 0;
 
@@ -21,18 +16,28 @@ public class PlayerBase : MonoBehaviour {
 
   public WaveType CurrentWaveType;
 
+  private float _highWaveEnergy = 0;
+  private float _highWaveEnergyMax;
+  private float _highWaveEnergyDecrement;
+  private float _highWaveEnergyGrowth;
+
   public void Awake() {
     EventModule.Subscribe(OnEvent);
     Health = Tuning.Get.MaxPlayerBaseHealth;
-    HighWaveEnergy = HighWaveEnergyMax;
+
+    _highWaveEnergyMax = Tuning.Get.MaxEnergyOfHighPitchAttack;
+    _highWaveEnergyDecrement = Tuning.Get.EnergyLostPerShotOfHighPitchAttack;
+    _highWaveEnergyGrowth = 0.1f; //Tuning.Get.EnergyGrowthRateOfHighPitchAttack;
+
+    _highWaveEnergy = _highWaveEnergyMax;
   }
 
   public void Update() {
     UpdateCooldown();
 
     if(HighWaveCooldown == 0) {
-      HighWaveEnergy =
-        Mathf.Min(HighWaveEnergy + HighWaveEnergyGrowth, HighWaveEnergyMax);
+      _highWaveEnergy =
+        Mathf.Min(_highWaveEnergy + _highWaveEnergyGrowth, _highWaveEnergyMax);
     }
   }
 
@@ -57,7 +62,7 @@ public class PlayerBase : MonoBehaviour {
   }
 
   public float GetHighWaveEnergyPercentage() {
-    return 1 - Mathf.Min(HighWaveEnergy / HighWaveEnergyMax, HighWaveEnergyMax);
+    return 1 - Mathf.Min(_highWaveEnergy / _highWaveEnergyMax, _highWaveEnergyMax);
   }
 
   public bool WaveShootIsAllowed(WaveType type) {
@@ -107,11 +112,11 @@ public class PlayerBase : MonoBehaviour {
 
     switch(waveType) {
       case WaveType.High:
-        HighWaveEnergy = Mathf.Max(0, HighWaveEnergy - HighWaveEnergyDecrement);
+        _highWaveEnergy = Mathf.Max(0, _highWaveEnergy - _highWaveEnergyDecrement);
 
-        if(HighWaveEnergy == 0) {
+        if(_highWaveEnergy == 0) {
           HighWaveCooldown = GetCooldownForWaveType(CurrentWaveType);
-          HighWaveEnergy = HighWaveEnergyMax;
+          _highWaveEnergy = _highWaveEnergyMax;
           EventModule.Event(EventType.HIGH_WAVE_OVERHEATED);
         }
 
