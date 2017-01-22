@@ -16,7 +16,8 @@ public class PlayerBase : MonoBehaviour {
 
   public void Awake() {
     EventModule.Subscribe(OnEvent);
-    Health = Tuning.Get.MaxPlayerBaseHealth;
+    //Health = Tuning.Get.MaxPlayerBaseHealth;
+    Health = 1;
   }
 
   public void Update() {
@@ -58,7 +59,7 @@ public class PlayerBase : MonoBehaviour {
       OnSwitchWaveType();
     } else if(eventType == EventType.ENEMY_HIT) {
       OnEnemyHit();
-}
+    }
   }
 
   private void OnShootWave() {
@@ -67,9 +68,12 @@ public class PlayerBase : MonoBehaviour {
   }
 
   private void OnEnemyHit() {
+    if(Health <= 0) { return; }
+
     Health--;
+
     if(Health <= 0) {
-      EventModule.Event(Event.GAME_OVER);
+      EventModule.Event(EventType.GAME_OVER);
     }
   }
 
