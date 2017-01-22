@@ -222,6 +222,22 @@ Prefab:
       propertyPath: m_PlanetSize
       value: 1.1
       objectReference: {fileID: 0}
+    - target: {fileID: 114219735499057338, guid: 0688d0a8c0f95e048b20b8fdb0613a1b,
+        type: 2}
+      propertyPath: enemyTrailGradient.key0.rgba
+      value: 4278255517
+      objectReference: {fileID: 0}
+    - target: {fileID: 114219735499057338, guid: 0688d0a8c0f95e048b20b8fdb0613a1b,
+        type: 2}
+      propertyPath: enemyTrailGradient.key1.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
+    - target: {fileID: 114219735499057338, guid: 0688d0a8c0f95e048b20b8fdb0613a1b,
+        type: 2}
+      propertyPath: trailerRendererPrefab
+      value: 
+      objectReference: {fileID: 1146285644846114, guid: 25cb2183774e3492596a77eed25f6b76,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0688d0a8c0f95e048b20b8fdb0613a1b, type: 2}
   m_IsPrefabParent: 0
@@ -345,7 +361,7 @@ Prefab:
     - target: {fileID: 224789851505899510, guid: 422242708642743ebaf5022697e13bc8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224744541728542586, guid: 422242708642743ebaf5022697e13bc8,
         type: 2}
@@ -365,7 +381,7 @@ Prefab:
     - target: {fileID: 224744541728542586, guid: 422242708642743ebaf5022697e13bc8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224493983325729950, guid: 422242708642743ebaf5022697e13bc8,
         type: 2}
@@ -385,7 +401,7 @@ Prefab:
     - target: {fileID: 224493983325729950, guid: 422242708642743ebaf5022697e13bc8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -150
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 422242708642743ebaf5022697e13bc8, type: 2}
