@@ -12,11 +12,13 @@ public class Base : MonoBehaviour {
   public WaveType CurrentWaveType;
 
   public void Awake() {
-    //EventModule.Subscribe(OnSwitchWaveType);
+    EventModule.Subscribe(OnSwitchWaveType);
   }
 
-  private void OnSwitchWaveType(string str) {
-    CurrentWaveType =
-      (CurrentWaveType == WaveType.Low) ? WaveType.High : WaveType.Low;
+  private void OnSwitchWaveType(string eventType) {
+    if(eventType == EventType.SWITCH_WAVE_TYPE) {
+      CurrentWaveType =
+        (CurrentWaveType == WaveType.Low) ? WaveType.High : WaveType.Low;
+    }
   }
 }
