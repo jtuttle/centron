@@ -19,6 +19,7 @@ public abstract class MonoBehaviourExtended : MonoBehaviour, System.IComparable 
 	protected const string LEVEL = "Level";
 
 	IEnumerator moveCoroutine;
+  bool destroyOnNextLoad = false;
 
 	public delegate void MonoAction();
 	public delegate void MonoActionStr(string eventName);
@@ -41,6 +42,18 @@ public abstract class MonoBehaviourExtended : MonoBehaviour, System.IComparable 
 		UnsubscribeEvents();
 		StopAllCoroutines();
 	}
+    
+  void OnLevelWasLoaded(int level) {
+    handleSceneLoaded(level);
+  }
+    
+
+  protected virtual void handleSceneLoaded(int sceneIndex) {
+    if(destroyOnNextLoad) {
+      Destroy(gameObject);
+    }
+  }
+
 
 	protected virtual void CheckReferences()
 	{
@@ -53,7 +66,11 @@ public abstract class MonoBehaviourExtended : MonoBehaviour, System.IComparable 
 			this.FetchReferences();
 		}
 	}
-		
+
+ protected virtual void markForDestroyOnLoad() {
+    destroyOnNextLoad = true;
+  }
+
 	// Value should only be null if you're setting a trigger
 	public bool QueryAnimator (AnimParam param, string key, object value = null) {
 		Animator animator = GetComponent<Animator>();
@@ -116,9 +133,13 @@ public abstract class MonoBehaviourExtended : MonoBehaviour, System.IComparable 
 		this.referencesFetched = true;
 	}
 
-	protected abstract void CleanupReferences ();
+  protected virtual void CleanupReferences () {
+    // NOTHING
+  }
 
-	protected abstract void HandleNamedEvent (string eventName);
+  protected virtual void HandleNamedEvent (string eventName) {
+    // NOTHING
+  }
 
 	public int CompareTo (object other) {
 		if (other is MonoBehaviourExtended) {
