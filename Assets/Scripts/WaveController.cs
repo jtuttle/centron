@@ -38,10 +38,10 @@ public class WaveController : MonoBehaviour {
   }
 
   private void OnEvent(string eventType) {
-    if(eventType == EventType.SHOOT_WAVE) {
-      _waves.Add(
-        PlayerBase.CurrentWaveType == WaveType.Low ? SpawnLowWave() : SpawnHighWave()
-      );
+    if(eventType == EventType.SHOOT_HIGH_WAVE) {
+      _waves.Add(SpawnHighWave());
+    } else if (eventType == EventType.SHOOT_LOW_WAVE) {
+      _waves.Add(SpawnLowWave());
     }
   }
 
