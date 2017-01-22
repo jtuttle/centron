@@ -21,6 +21,9 @@ public class PlayerBase : MonoBehaviour {
   private float _highWaveEnergyDecrement;
   private float _highWaveEnergyGrowth;
 
+  private SpriteRenderer _cannonSprite;
+  private SpriteRenderer _ringGlowSprite;
+
   public void Awake() {
     EventModule.Subscribe(OnEvent);
     Health = Tuning.Get.MaxPlayerBaseHealth;
@@ -30,6 +33,10 @@ public class PlayerBase : MonoBehaviour {
     _highWaveEnergyGrowth = 0.1f; //Tuning.Get.EnergyGrowthRateOfHighPitchAttack;
 
     _highWaveEnergy = _highWaveEnergyMax;
+
+    _cannonSprite = transform.Find("Cannon").GetComponent<SpriteRenderer>();
+    _ringGlowSprite = transform.Find("RingGlow").GetComponent<SpriteRenderer>();
+    _ringGlowSprite.enabled = false;
   }
 
   public void Update() {
@@ -85,6 +92,9 @@ public class PlayerBase : MonoBehaviour {
 
     float nextLowCooldown = Mathf.Max(0, LowWaveCooldown - Time.deltaTime);
     if(LowWaveCooldown > 0 && nextLowCooldown <= 0) {
+      if(CurrentWaveType == WaveType.Low)
+        _ringGlowSprite.enabled = true;
+
       EventModule.Event(EventType.LOW_WAVE_READY);
     }
     LowWaveCooldown = nextLowCooldown;
@@ -123,6 +133,7 @@ public class PlayerBase : MonoBehaviour {
         break;
       case WaveType.Low:
         LowWaveCooldown = GetCooldownForWaveType(CurrentWaveType);
+        _ringGlowSprite.enabled = false;
         break;
     }
   }
@@ -138,7 +149,14 @@ public class PlayerBase : MonoBehaviour {
   }
 
   private void OnSwitchWaveType() {
-    CurrentWaveType =
-      (CurrentWaveType == WaveType.Low) ? WaveType.High : WaveType.Low;
+    if(CurrentWaveType == WaveType.Low) {
+      _cannonSprite.enabled = true;
+      _ringGlowSprite.enabled = false;
+      CurrentWaveType = WaveType.High;
+    } else {
+      _cannonSprite.enabled = false;
+      _ringGlowSprite.enabled = true;
+      CurrentWaveType = WaveType.Low;
+    }
   }
 }
