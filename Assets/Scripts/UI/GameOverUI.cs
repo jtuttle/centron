@@ -9,6 +9,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TitleScreenUI : UI {
-  
+public class GameOverUI : UI 
+{
+  [SerializeField] 
+  Text timeSurvived;
+
+  void Awake() {
+    timeSurvived.text = PlayerPrefs.GetString(TIME_SURVIVED);
+  }
+ 
 }
