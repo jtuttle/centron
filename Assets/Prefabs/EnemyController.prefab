@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4052382572018342}
   - component: {fileID: 114219735499057338}
   m_Layer: 0
-  m_Name: SpawnController
+  m_Name: EnemyController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6441f966005a7418ccb631caf731ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SpawnCircleRadius: 8
+  m_SpawnCircleRadius: 5
   m_NumSpawnPoints: 5
+  m_SpawnSpots: []
   m_EnemyPrefab: {fileID: 1945928225328984, guid: ce57ad14e8f25f649b4c996878442085,
     type: 2}
+  m_EnemySpeed: 2
+  m_PlanetSize: 1.5
