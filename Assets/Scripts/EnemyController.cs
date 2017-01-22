@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour {
   public float m_PlanetSize;
 
   private List<GameObject> m_Enemies;
-
+  private Stack<GameObject> m_EnemiesSpawnPool = new Stack<GameObject>();
   //private GameObject[] m_Enemies;
 
 
@@ -33,10 +33,41 @@ public class EnemyController : MonoBehaviour {
   // Use this for initialization
   void Start() {
     foreach (Vector3 pos in m_SpawnSpots) {
-      m_Enemies.Add(GameObject.Instantiate(m_EnemyPrefab, pos, Quaternion.identity) as GameObject);
+      spawnEnemy(pos);
     }
   }
 
+  void spawnEnemy(Vector3 m_spawnPos) {
+    m_Enemies.Add(getEnemyInstance(m_spawnPos));
+  }
+
+  GameObject getEnemyInstance(Vector3 m_spawnPos) {
+    if(spawnPoolHasEnemy()) { 
+      return getEnemyInstanceFromSpawnPool(m_spawnPos);
+    } else {
+      return createNewEnemyInstance(m_spawnPos);
+    }
+  }
+
+  GameObject createNewEnemyInstance(Vector3 m_spawnPos) {
+    return GameObject.Instantiate(m_EnemyPrefab, m_spawnPos, Quaternion.identity) as GameObject;
+  }
+
+  GameObject getEnemyInstanceFromSpawnPool(Vector3 m_spawnPos) {
+    GameObject enemy = m_EnemiesSpawnPool.Pop();
+    enemy.transform.position = m_spawnPos;
+    return enemy;
+  }
+
+  bool spawnPoolHasEnemy() {
+    return m_EnemiesSpawnPool.Count > 0;
+  }
+    
+  void handleEnemyKilled(GameObject enemy) {
+    m_Enemies.Remove(enemy);
+    enemy.SetActive(false);
+    m_EnemiesSpawnPool.Push(enemy);
+  }
 
   // Update is called once per frame
   void Update() {
