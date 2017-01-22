@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4023236470448056}
   - component: {fileID: 212879301950437022}
   m_Layer: 0
-  m_Name: CircleSprite
+  m_Name: AlienSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
