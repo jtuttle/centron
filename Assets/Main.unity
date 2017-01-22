@@ -293,7 +293,7 @@ Prefab:
     - target: {fileID: 224789851505899510, guid: 422242708642743ebaf5022697e13bc8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224493983325729950, guid: 422242708642743ebaf5022697e13bc8,
         type: 2}
@@ -313,7 +313,7 @@ Prefab:
     - target: {fileID: 224493983325729950, guid: 422242708642743ebaf5022697e13bc8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 114075931581763600, guid: 422242708642743ebaf5022697e13bc8,
         type: 2}
@@ -361,6 +361,25 @@ Prefab:
     - target: {fileID: 4052382572018342, guid: 0688d0a8c0f95e048b20b8fdb0613a1b, type: 2}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080783720436318, guid: 0688d0a8c0f95e048b20b8fdb0613a1b, type: 2}
+      propertyPath: m_Name
+      value: EnemyController
+      objectReference: {fileID: 0}
+    - target: {fileID: 114219735499057338, guid: 0688d0a8c0f95e048b20b8fdb0613a1b,
+        type: 2}
+      propertyPath: m_EnemySpeed
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114219735499057338, guid: 0688d0a8c0f95e048b20b8fdb0613a1b,
+        type: 2}
+      propertyPath: m_SpawnCircleRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114219735499057338, guid: 0688d0a8c0f95e048b20b8fdb0613a1b,
+        type: 2}
+      propertyPath: m_PlanetSize
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0688d0a8c0f95e048b20b8fdb0613a1b, type: 2}
