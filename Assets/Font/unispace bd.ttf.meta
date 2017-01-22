@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 467376c5271054664ae61a6a2ba4fa92
+timeCreated: 1485049306
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Unispace
+  fontNames:
+  - Unispace
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 0ce55856f5cea43c6b28caf6c1068741, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

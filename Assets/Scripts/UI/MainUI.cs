@@ -17,10 +17,18 @@ public class MainUI : MonoBehaviour {
   [SerializeField]
   Image cooldownBar;
   [SerializeField]
+  Text highScoreTimerText;
+  [SerializeField]
   Text waveTypeText;
+  Timer highScoreTimer;
 
-  public void Awake() {
+  void Awake () {
     EventModule.Subscribe(OnEvent);
+
+    highScoreTimer = new Timer(0, -1);
+    highScoreTimer.SubscribeToTimeChange(handleTimerTimeChange);
+    highScoreTimer.Begin();
+
     UpdateWaveType();
   }
 
@@ -28,6 +36,10 @@ public class MainUI : MonoBehaviour {
     if(PlayerBase != null) {
       UpdateCooldown(PlayerBase.GetCooldownPercentage());
     }
+  }
+
+  void handleTimerTimeChange(float timeRemaining) {
+    highScoreTimerText.text = highScoreTimer.TimeRemainingStr;
   }
 
   // Amount should be between 0..1.0f
@@ -38,6 +50,10 @@ public class MainUI : MonoBehaviour {
   // Amount should be between 0..1.0f
   public void UpdateCooldown(float amount) {
     cooldownBar.fillAmount = amount;
+  }
+  
+  public float GetGameTime() {
+    return highScoreTimer.TimeRemaining;
   }
 
   private void OnEvent(string eventType) {
