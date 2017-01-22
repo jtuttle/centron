@@ -28,6 +28,7 @@ public class Wave : MonoBehaviour {
     GameObject enemy = collider.gameObject;
     if(enemy.tag.Equals(Tags.ENEMY)) {
       EventModule.Event(EventType.ENEMY_KILLED, enemy);
+      EventModule.Event(EventType.ENEMY_KILLED);
     }
   }
 }
