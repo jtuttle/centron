@@ -14,4 +14,5 @@
   public const string SPAWN_ENEMY = "SpawnEnemy";
   public const string PAUSE_GAME = "PauseGame";
   public const string UI_CLICK = "UIClick";
+  public const string CLICK = "Click";
 }

@@ -66,6 +66,14 @@ public class UI : MonoBehaviour
     #endif
   }
 
+  public virtual void Show () {
+    gameObject.SetActive(true);
+  }
+
+  public virtual void Hide () {
+    gameObject.SetActive(false);
+  }
+
   protected string getHighScoreText() {
     return string.Format(highScoreFormat, padWithZeroes(highScore, highScoreZeroes));
   }
