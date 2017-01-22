@@ -26,14 +26,17 @@ public class EventModule : Module, IEventModule {
 	public delegate void NamedFloatAction (string valueKey, float key);
 	public event NamedFloatAction OnNamedFloatEvent;
 
-    public delegate void AudioEventAction(AudioActionType actionType, AudioType audioType);
-    public event AudioEventAction OnAudioEvent;
+  public delegate void AudioEventAction(AudioActionType actionType, AudioType audioType);
+  public event AudioEventAction OnAudioEvent;
 
 	public delegate void PODEventAction(PODEvent gameEvent);
 	public event PODEventAction OnPODEvent;
 
 	public delegate void PODMessageEventAction(PODEvent gameEvent, string message);
 	public event PODMessageEventAction OnPODMessageEvent;
+
+  public delegate void NamedGameObjectEvent (string valueKey, GameObject gameObject);
+  public event NamedGameObjectEvent OnNamedGameObjectEvent;
 
 	#endregion
 
@@ -83,6 +86,12 @@ public class EventModule : Module, IEventModule {
 		}
 	}
 
+  public void InstanceEvent(string eventName, GameObject gameObject) {
+    if(OnNamedGameObjectEvent != null) {
+      OnNamedGameObjectEvent(eventName, gameObject);
+    }
+  }
+
 	#endregion
 
 	#region Instance Event Subscription
@@ -107,6 +116,10 @@ public class EventModule : Module, IEventModule {
 		OnPODEvent += action;
 	}
 
+  public void InstanceSubscribe (NamedGameObjectEvent action) { 
+    OnNamedGameObjectEvent += action;
+  }
+
 	public void InstanceUnsubscribe (NamedEventAction action) {
 		OnNamedEvent -= action;
 	}
@@ -126,6 +139,10 @@ public class EventModule : Module, IEventModule {
 	public void InstanceUnsubscribe (PODEventAction action) {
 		OnPODEvent -= action;
 	}
+
+  public void InstanceUnsubscribe (NamedGameObjectEvent action) {
+    OnNamedGameObjectEvent -= action;
+  }
 
 	#endregion
 
@@ -160,6 +177,12 @@ public class EventModule : Module, IEventModule {
 			Instance.InstanceEvent(gameEvent);
 		}
 	}
+   
+  public static void Event(string eventName, GameObject gameObject) {
+    if(HasInstance) {
+      Instance.InstanceEvent(eventName, gameObject);
+    }
+  }
 
 	#endregion
 
@@ -195,6 +218,12 @@ public class EventModule : Module, IEventModule {
 		}
 	}
 		
+  public static void Subscribe (NamedGameObjectEvent action) {
+    if (HasInstance) {
+      Instance.InstanceSubscribe(action);
+    }
+  }
+
 	public static void Unsubscribe (NamedEventAction action) {
 		if (HasInstance) {
 			Instance.InstanceUnsubscribe(action);
@@ -224,6 +253,12 @@ public class EventModule : Module, IEventModule {
 			Instance.InstanceUnsubscribe(action);
 		}
 	}
+
+  public static void Unsubscribe (NamedGameObjectEvent action) {
+    if (HasInstance) {
+      Instance.InstanceUnsubscribe(action);
+    }
+  }
 
 	#endregion
 

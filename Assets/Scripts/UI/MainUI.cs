@@ -26,6 +26,10 @@ public class MainUI : UI {
     highScoreTimer.SubscribeToTimeChange(handleTimerTimeChange);
     highScoreTimer.Begin();
   }
+    
+  void Start() {
+    EventModule.Subscribe(handleNamedEvent);
+  }
 
   public void Update() {
     if(PlayerBase != null) {
@@ -44,6 +48,13 @@ public class MainUI : UI {
   void OnDestroy() {
     PlayerPrefs.SetString(TIME_SURVIVED, highScoreTimer.TimeRemainingStr);
     highScoreTimer.UnsubscribeFromTimeChange(handleTimerTimeChange);
+    EventModule.Unsubscribe(handleNamedEvent);
+  }
+
+  void handleNamedEvent(string eventName) {
+    if(eventName == Event.GAME_OVER) {
+      LoadGameOver();
+    }
   }
 
   void handleTimerTimeChange(float timeRemaining) {
