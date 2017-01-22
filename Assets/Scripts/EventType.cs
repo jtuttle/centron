@@ -10,6 +10,7 @@
   public const string ENEMY_KILLED = "EnemyKilled";
   public const string GAME_OVER = "GameOver";
   public const string GAME_OVER_ANIMATION_COMPLETE = "GameOverAnimationComplete";
+  public const string ENEMY_SPAWN_ANIMATION_COMPLETE = "EnemySpawnAnimationComplete";
   public const string SPAWN_ENEMY = "SpawnEnemy";
   public const string PAUSE_GAME = "PauseGame";
   public const string UI_CLICK = "UIClick";
