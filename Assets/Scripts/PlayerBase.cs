@@ -68,6 +68,9 @@ public class PlayerBase : MonoBehaviour {
 
   private void OnEnemyHit() {
     Health--;
+    if(Health <= 0) {
+      EventModule.Event(Event.GAME_OVER);
+    }
   }
 
   private void OnSwitchWaveType() {
