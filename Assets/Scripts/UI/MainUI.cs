@@ -35,6 +35,10 @@ public class MainUI : UI {
     }
   }
 
+  void OnDestroy() {
+    highScoreTimer.UnsubscribeFromTimeChange(handleTimerTimeChange);
+  }
+
   void handleTimerTimeChange(float timeRemaining) {
     highScoreTimerText.text = highScoreTimer.TimeRemainingStr;
   }
