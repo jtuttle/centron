@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour {
   private List<GameObject> m_Enemies;
   private Stack<GameObject> m_EnemiesSpawnPool = new Stack<GameObject>();
   private float timer;
+  private float nextSpawnTime;
 
   //private GameObject[] m_Enemies;
 
@@ -38,6 +39,7 @@ public class EnemyController : MonoBehaviour {
       spawnEnemy(pos);
     }
     timer = 0f;
+    nextSpawnTime = GetRandomSpawnTime(); 
     EventModule.Subscribe(handleGameObjectEvent);
   }
 
@@ -64,6 +66,7 @@ public class EnemyController : MonoBehaviour {
   GameObject getEnemyInstanceFromSpawnPool(Vector3 m_spawnPos) {
     GameObject enemy = m_EnemiesSpawnPool.Pop();
     enemy.transform.position = m_spawnPos;
+    enemy.SetActive(true);
     return enemy;
   }
 
@@ -79,11 +82,14 @@ public class EnemyController : MonoBehaviour {
 
   // Update is called once per frame
   void Update() {
-
     //CheckSpawn();
     List<GameObject> enemiesToDestroy = new List<GameObject>();
+    timer += Time.deltaTime;
     foreach (GameObject enemy in m_Enemies) {
-      enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, Vector3.zero, m_EnemySpeed * Time.deltaTime);
+      enemy.transform.position = Vector3.MoveTowards(
+        enemy.transform.position, 
+        Vector3.zero, 
+        Tuning.Get.EnemyMovementRate * Time.deltaTime);
 
       if (enemy.transform.position.magnitude < m_PlanetSize) {
         HitPlanet(enemy);
@@ -93,6 +99,24 @@ public class EnemyController : MonoBehaviour {
     for (int i = 0; i < enemiesToDestroy.Count; i++) {
       handleEnemyKilled(enemiesToDestroy[i]);
     }
+
+    CheckSpawnation();
+  }
+
+  private void CheckSpawnation() {
+    if (timer > nextSpawnTime) {
+      nextSpawnTime = GetRandomSpawnTime() + timer;
+
+      int lane = UnityEngine.Random.Range(0, m_NumSpawnPoints);
+
+      spawnEnemy(m_SpawnSpots[lane]);
+    }
+  }
+
+  private float GetRandomSpawnTime() {
+    return UnityEngine.Random.Range(
+        Tuning.Get.UnitSpawnFrequencyMinimum,
+        Tuning.Get.UnitSpawnFrequencyMaximum);
   }
 
   private void HitPlanet(GameObject enemy) {
