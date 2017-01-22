@@ -9,9 +9,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainUI : MonoBehaviour {
+public class MainUI : UI {
   public PlayerBase PlayerBase;
-
   [SerializeField]
   Image healthBar;
   [SerializeField]
@@ -34,6 +33,17 @@ public class MainUI : MonoBehaviour {
       UpdateHealth(PlayerBase.GetHealthPercentage());
       UpdateWaveType(PlayerBase.CurrentWaveType.ToString());
     }
+    // DEGBUGING ONLY:
+    #if UNITY_EDITOR
+    if (Input.GetKeyDown(KeyCode.Q)) {
+      LoadGameOver();
+    }
+    #endif
+  }
+
+  void OnDestroy() {
+    PlayerPrefs.SetString(TIME_SURVIVED, highScoreTimer.TimeRemainingStr);
+    highScoreTimer.UnsubscribeFromTimeChange(handleTimerTimeChange);
   }
 
   void handleTimerTimeChange(float timeRemaining) {
