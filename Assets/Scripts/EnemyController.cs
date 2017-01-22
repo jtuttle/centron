@@ -39,9 +39,11 @@ public class EnemyController : MonoBehaviour {
     _timer = 0f;
     _nextSpawnTime = GetRandomSpawnTime(); 
     EventModule.Subscribe(handleGameObjectEvent);
+    EventModule.Subscribe(handleVector3Event);
   }
 
   void OnDestroy() {
+    EventModule.Unsubscribe(handleVector3Event);
     EventModule.Unsubscribe(handleGameObjectEvent);
   }
 
@@ -50,9 +52,8 @@ public class EnemyController : MonoBehaviour {
     spawnEffect.transform.position = m_spawnPos;
   }
 
-  void addActiveEnemy(GameObject effect) {
-    GameObject.Destroy(effect);
-    m_Enemies.Add(getEnemyInstance(effect.transform.position));
+  void addActiveEnemy(Vector3 position) {
+    m_Enemies.Add(getEnemyInstance(position));
     EventModule.Event(EventType.SPAWN_ENEMY);
   }
 
@@ -147,11 +148,15 @@ public class EnemyController : MonoBehaviour {
     if (enemy.activeInHierarchy) EventModule.Event(EventType.ENEMY_HIT);
   }
 
-  void handleGameObjectEvent(string eventName, GameObject gameObject) {
-    if(eventName == EventType.ENEMY_KILLED) {
+  void handleGameObjectEvent(string eventType, GameObject gameObject) {
+    if(eventType == EventType.ENEMY_KILLED) {
       handleEnemyKilled(gameObject);
-    } else if(eventName == EventType.ENEMY_SPAWN_ANIMATION_COMPLETE) {
-      addActiveEnemy(gameObject);
+    }
+  }
+
+  void handleVector3Event(string eventType, Vector3 position) {
+    if(eventType == EventType.ENEMY_SPAWN_ANIMATION_COMPLETE) {
+      addActiveEnemy(position);
     }
   }
 }
