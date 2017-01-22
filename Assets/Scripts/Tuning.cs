@@ -31,13 +31,14 @@ public class Tuning
 		
 	public int MaxPlayerBaseHealth;
 	public float PlayerWaveAttacksPerCooldown;
-	public float PlayerAttackCooldown;
 	public float UnitSpawnFrequency;
+  public float MaxNumberOfTimesALaneCanSpawnUnitsInSuccession;
 	public float EnemyMovementRate;
 	public float HighPitchAttackRange;
 	public float HighPitchAttackDuration;
-	public float NumberofLanesaHighPitchAttackHits;
-	public float LowPitchAttackRange;
+  public float HighPitchAttackCooldown;
+  public float AngleofHighPitchAttack;
 	public float LowPitchAttackDuration;
-	public int NumberOfLanesALowPitchAttackHits;
+  public float LowPitchAttackCooldown;
+  public float AngleofLowPitchAttack;
 }
