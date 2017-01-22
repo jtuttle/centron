@@ -14,6 +14,20 @@ public class MainUI : MonoBehaviour {
   Image healthBar;
   [SerializeField]
   Image cooldownBar;
+  [SerializeField]
+  Text highScoreTimerText;
+
+  Timer highScoreTimer;
+
+  void Awake () {
+    highScoreTimer = new Timer(0, -1);
+    highScoreTimer.SubscribeToTimeChange(handleTimerTimeChange);
+    highScoreTimer.Begin();
+  }
+
+  void handleTimerTimeChange(float timeRemaining) {
+    highScoreTimerText.text = highScoreTimer.TimeRemainingStr;
+  }
 
   // Amount should be between 0..1.0f
   public void UpdateHealth(float amount) {
@@ -23,6 +37,10 @@ public class MainUI : MonoBehaviour {
   // Amount should be between 0..1.0f
   public void UpdateCooldown(float amount) {
     healthBar.fillAmount = amount;
+  }
+
+  public float GetGameTime() {
+    return highScoreTimer.TimeRemaining;
   }
 
 }
