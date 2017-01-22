@@ -24,6 +24,10 @@ public class PlayerBase : MonoBehaviour {
     UpdateCooldown();
   }
 
+  public void OnDestroy() {
+    EventModule.Unsubscribe(OnEvent);
+  }
+
   public float GetHealthPercentage() {
     return Health / (float)Tuning.Get.MaxPlayerBaseHealth;
   }
