@@ -22,11 +22,13 @@ public class InputController : MonoBehaviour {
   }
 
   void Update() {
-    if(canShootCurrentWave() && Input.GetMouseButtonDown(0)) {
-      ShootWave(player.CurrentWaveType);
-    }
-    if(Input.GetMouseButtonDown(1) || Input.GetKeyDown(switchWaveKey)) {
-      SwitchWaveType();
+    if (player.Health > 0) {
+      if (canShootCurrentWave() && Input.GetMouseButtonDown(0)) {
+        ShootWave(player.CurrentWaveType);
+      }
+      if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(switchWaveKey)) {
+        SwitchWaveType();
+      }
     }
   }
 

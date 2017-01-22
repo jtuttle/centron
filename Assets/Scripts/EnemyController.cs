@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
-  public float m_SpawnCircleRadius = 8f;
+  public float m_SpawnCircleRadius = 9f;
   public int m_NumSpawnPoints = 5;
   private Vector3[] m_SpawnSpots;
   public GameObject m_EnemyPrefab;
@@ -14,8 +14,6 @@ public class EnemyController : MonoBehaviour {
   private Stack<GameObject> m_EnemiesSpawnPool = new Stack<GameObject>();
   private float timer;
   private float nextSpawnTime;
-
-  //private GameObject[] m_Enemies;
 
   void Awake() {
     m_SpawnSpots = new Vector3[m_NumSpawnPoints];
@@ -28,7 +26,6 @@ public class EnemyController : MonoBehaviour {
       float yy = Mathf.Sin(aa) * m_SpawnCircleRadius;
 
       m_SpawnSpots[i] = new Vector3(xx, yy, 0f);
-
     }
   }
 
@@ -51,7 +48,7 @@ public class EnemyController : MonoBehaviour {
   }
 
   GameObject getEnemyInstance(Vector3 m_spawnPos) {
-    if(spawnPoolHasEnemy()) { 
+    if(spawnPoolHasEnemies()) { 
       return getEnemyInstanceFromSpawnPool(m_spawnPos);
     } else {
       return createNewEnemyInstance(m_spawnPos);
@@ -69,7 +66,7 @@ public class EnemyController : MonoBehaviour {
     return enemy;
   }
 
-  bool spawnPoolHasEnemy() {
+  bool spawnPoolHasEnemies() {
     return m_EnemiesSpawnPool.Count > 0;
   }
     
@@ -105,9 +102,7 @@ public class EnemyController : MonoBehaviour {
   private void CheckSpawnation() {
     if (timer > nextSpawnTime) {
       nextSpawnTime = GetRandomSpawnTime() + timer;
-
       int lane = UnityEngine.Random.Range(0, m_NumSpawnPoints);
-
       spawnEnemy(m_SpawnSpots[lane]);
     }
   }
