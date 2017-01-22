@@ -21,7 +21,7 @@ public class MainUI : UI {
   Text waveTypeText;
   Timer highScoreTimer;
 
-  void Awake () {
+  void Awake() {
     highScoreTimer = new Timer(0, -1);
     highScoreTimer.SubscribeToTimeChange(handleTimerTimeChange);
     highScoreTimer.Begin();
@@ -52,7 +52,7 @@ public class MainUI : UI {
   }
 
   void handleNamedEvent(string eventName) {
-    if(eventName == Event.GAME_OVER) {
+    if(eventName == EventType.GAME_OVER_ANIMATION_COMPLETE) {
       LoadGameOver();
     }
   }
