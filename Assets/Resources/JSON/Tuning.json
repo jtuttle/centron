@@ -1,30 +1,18 @@
 {
-    "GameDuration" : 2,
-    "MaxPlayerBaseHealth" : 10,
-    
-    "StartingUnitSpawnRateMinimum" : 0.5,
-    "StartingUnitSpawnRateMaximum" : 1.5,
-
-    "LateGameUnitSpawnRateMinimum" : 0.05,
-    "LateGameUnitSpawnRateMaximum" : 0.7,
-
-    "StartingMovementRate" : 2,
-    "LateGameMovementRate" : 9,
-
-    "HighPitchAttackCooldown" : 2,
-    "LowPitchAttackCooldown" : 3,
-
-    "LowPitchAttackRange" : 2,
-    "LowPitchAttackDuration" : 1,
-
-    "MaxNumberOfTimesALaneCanSpawnUnitsInSuccession" : 3,
-    "PlayerWaveAttacksPerCooldown" : 1,
-    "MaxEnergyOfHighPitchAttack" : 6,
-    "EnergyLostPerShotOfHighPitchAttack" : 1,
-    "HighPitchAttackRange" : 8,
-    "HighPitchAttackDuration" : 1,
-    "AngleofHighPitchAttack" : 80,
-    "AngleofLowPitchAttack" : 360,
-
+	"MaxPlayerBaseHealth" : 10,
+	"GameDuration" : 2,
+	"StartingUnitSpawnRateMinimum" : 0.7,
+	"StartingUnitSpawnRateMaximum" : 1.9,
+	"LateGameUnitSpawnRateMinimum" : 0.01,
+	"LateGameUnitSpawnRateMaximum" : 0.1,
+	"StartingMovementRate" : 0.9,
+	"LateGameMovementRate" : 9,
+	"MaxEnergyOfHighPitchAttack" : 60,
+	"EnergyLostPerShotOfHighPitchAttack" : 20,
+	"HighPitchAttackRange" : 8,
+	"HighPitchAttackDuration" : 1,
+	"HighPitchAttackCooldown" : 2,
+	"LowPitchAttackDuration" : 1,
+	"LowPitchAttackCooldown" : 3,
 	"EnergyGrowthRateOfHighPitchAttack" : 0.1
 }
