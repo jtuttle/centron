@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InputController : MonoBehaviour {
+  private bool _shootWaveEnabled = true;
+
   public enum InputEvent {
     ShootWave, SwitchWaveType
   }
 
+  void Awake() {
+    EventModule.Subscribe(OnEvent);
+  }
+
   void Update() {
-    if(Input.GetMouseButtonDown(0)) {
+    if(_shootWaveEnabled && Input.GetMouseButtonDown(0)) {
       ShootWave();
     }
 
@@ -17,7 +23,14 @@ public class InputController : MonoBehaviour {
     }
   }
 
+  public void OnEvent(string eventType) {
+    if(eventType == EventType.WAVE_SHOOT_READY) {
+      _shootWaveEnabled = true;
+    }
+  }
+
   private void ShootWave() {
+    _shootWaveEnabled = false;
     EventModule.Event(EventType.SHOOT_WAVE);
   }
 
