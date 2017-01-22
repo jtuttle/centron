@@ -1,0 +1,133 @@
+{
+  "Files" : [
+    {
+      "Name" : "MainMusic",
+      "Groups" : [
+      ],
+      "Events" : [
+        "PlayMainMusic"
+      ],
+      "StopEvents" : [
+        "StopMainMusic"
+      ],
+      "Loop" : true,
+      "Type" : "Music",
+      "Channel" : 0,
+      "Volume" : 100
+    },
+    {
+      "Name" : "sfx_enemyDeathA",
+      "Groups" : [
+      ],
+      "Events" : [
+        "EnemyKilled"
+      ],
+      "StopEvents" : [
+      ],
+      "Loop" : false,
+      "Type" : "SFX",
+      "Channel" : 1,
+      "Volume" : 100
+    },
+    {
+      "Name" : "sfx_enemySpawnA",
+      "Groups" : [
+      ],
+      "Events" : [
+        "SpawnEnemy"
+      ],
+      "StopEvents" : [
+      ],
+      "Loop" : false,
+      "Type" : "SFX",
+      "Channel" : 1,
+      "Volume" : 100
+    },
+    {
+      "Name" : "sfx_playerDamageA",
+      "Groups" : [
+      ],
+      "Events" : [
+        "EnemyHitPlayer"
+      ],
+      "StopEvents" : [
+      ],
+      "Loop" : false,
+      "Type" : "SFX",
+      "Channel" : 1,
+      "Volume" : 100
+    },
+    {
+      "Name" : "sfx_playerDeathA",
+      "Groups" : [
+      ],
+      "Events" : [
+        "GameOver"
+      ],
+      "StopEvents" : [
+      ],
+      "Loop" : false,
+      "Type" : "SFX",
+      "Channel" : 2,
+      "Volume" : 100
+    },
+    {
+      "Name" : "sfx_ui_pauseA",
+      "Groups" : [
+      ],
+      "Events" : [
+        "PauseGame"
+      ],
+      "StopEvents" : [
+      ],
+      "Loop" : false,
+      "Type" : "SFX",
+      "Channel" : 1,
+      "Volume" : 100
+    },
+    {
+      "Name" : "sfx_ui_playerInputA",
+      "Groups" : [
+      ],
+      "Events" : [
+        "UIClick"
+      ],
+      "StopEvents" : [
+      ],
+      "Loop" : false,
+      "Type" : "SFX",
+      "Channel" : 1,
+      "Volume" : 100
+    },
+    {
+      "Name" : "sfx_waveA",
+      "Groups" : [
+      ],
+      "Events" : [
+        "ShootHighWave"
+      ],
+      "StopEvents" : [
+      ],
+      "Loop" : false,
+      "Type" : "SFX",
+      "Channel" : 1,
+      "Volume" : 100
+    },
+    {
+      "Name" : "sfx_waveB",
+      "Groups" : [
+      ],
+      "Events" : [
+        "ShootLowWave"
+      ],
+      "StopEvents" : [
+      ],
+      "Loop" : false,
+      "Type" : "SFX",
+      "Channel" : 1,
+      "Volume" : 100
+    }
+  ],
+  "Groups" : [
+  ]
+}

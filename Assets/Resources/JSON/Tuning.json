@@ -1,18 +1,21 @@
 {
     "GameDuration" : 2,
-    "MaxPlayerBaseHealth" : 30,
+    "MaxPlayerBaseHealth" : 10,
     
     "StartingUnitSpawnRateMinimum" : 0.5,
     "StartingUnitSpawnRateMaximum" : 1.5,
 
     "LateGameUnitSpawnRateMinimum" : 0.05,
-    "LateGameUnitSpawnRateMaximum" : 1,
+    "LateGameUnitSpawnRateMaximum" : 0.7,
 
     "StartingMovementRate" : 2,
     "LateGameMovementRate" : 9,
 
     "HighPitchAttackCooldown" : 0.8,
     "LowPitchAttackCooldown" : 3,
+
+    "LowPitchAttackRange" : 2,
+    "LowPitchAttackDuration" : 1,
 
     "MaxNumberOfTimesALaneCanSpawnUnitsInSuccession" : 3,
     "PlayerWaveAttacksPerCooldown" : 1,
@@ -21,7 +24,6 @@
     "HighPitchAttackRange" : 8,
     "HighPitchAttackDuration" : 1,
     "AngleofHighPitchAttack" : 80,
-    "LowPitchAttackRange" : 2,
-    "LowPitchAttackDuration" : 1,
     "AngleofLowPitchAttack" : 360
+
 }

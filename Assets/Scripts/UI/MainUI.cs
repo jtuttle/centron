@@ -49,7 +49,7 @@ public class MainUI : UI {
     // DEGBUGING ONLY:
     #if UNITY_EDITOR
     if (Input.GetKeyDown(KeyCode.Q)) {
-      LoadGameOver();
+      EventModule.Event(EventType.GAME_OVER);
     }
     #endif
   }
@@ -79,7 +79,12 @@ public class MainUI : UI {
 
   // Amount should be between 0..1.0f
   public void UpdateCooldown(PlayerBase player) {
-    highWaveCooldownBar.fillAmount = player.GetCooldownPercentage(WaveType.High);
+    if(player.HighWaveCooldown == 0) {
+      highWaveCooldownBar.fillAmount = player.GetHighWaveEnergyPercentage();
+    } else {
+      highWaveCooldownBar.fillAmount = player.GetCooldownPercentage(WaveType.High);
+    }
+
     lowWaveCooldownBar.fillAmount = player.GetCooldownPercentage(WaveType.Low);
   }
 

@@ -85,7 +85,6 @@ public class EnemyController : MonoBehaviour {
     _doneness = _timer / ((float)Tuning.Get.GameDuration * 60f);
     if (_doneness > 1) _doneness = 1;
 
-    Debug.Log("doneness = " + _doneness);
     float moveRate = (Tuning.Get.LateGameMovementRate
       - Tuning.Get.StartingMovementRate) * _doneness
       + Tuning.Get.StartingMovementRate;
